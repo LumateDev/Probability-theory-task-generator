@@ -4,13 +4,12 @@ import java.awt.*;
 
 public class App extends JFrame {
 
-
     App(){
         super("Генератора задач на Теории Веростности");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setContentPane(mainPanel);
-        setSize(720, 360);
+        setSize(720, 500);
         setResizable(false);
         setVisible(true);
         labelTitle.setFont(new Font("Irial", Font.PLAIN, 28));
@@ -21,13 +20,10 @@ public class App extends JFrame {
         labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
         checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 
-
-
     }
 
     private JPanel mainPanel;
     private JPanel buttonPanel;
-
 
     private JButton buttonTask1;
     private JButton buttonTask2;
@@ -57,7 +53,7 @@ public class App extends JFrame {
     public static void main(String[] args) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
