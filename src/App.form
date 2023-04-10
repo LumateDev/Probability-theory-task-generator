@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="App">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="774" height="416"/>
@@ -8,245 +8,340 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="c316b" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="2" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="10" bottom="0" right="10"/>
+      <tabbedpane id="d0891" binding="tabPane1">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="61367" class="javax.swing.JButton" binding="buttonTask1">
+          <grid id="7e274" binding="page1Panel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
+              <tabbedpane title="Основная"/>
             </constraints>
-            <properties>
-              <text value="1"/>
-            </properties>
-          </component>
-          <component id="b84b3" class="javax.swing.JButton" binding="buttonTask2">
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="67660" binding="topPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="5" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="87041" class="javax.swing.JLabel" binding="labelChoseTask">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Выберите номера: "/>
+                    </properties>
+                  </component>
+                  <hspacer id="5e223">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <component id="6fb32" class="javax.swing.JLabel" binding="labelInputCountVar">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Количество вариантов:"/>
+                    </properties>
+                  </component>
+                  <component id="e02d3" class="javax.swing.JTextField" binding="textFieldCountVar">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="30"/>
+                        <preferred-size width="80" height="30"/>
+                        <maximum-size width="80" height="30"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="c316b" binding="buttonPanel" layout-manager="GridLayoutManager" row-count="2" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="10" bottom="0" right="10"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="61367" class="javax.swing.JButton" binding="buttonTask1">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="1"/>
+                    </properties>
+                  </component>
+                  <component id="b84b3" class="javax.swing.JButton" binding="buttonTask2">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="2"/>
+                    </properties>
+                  </component>
+                  <component id="6c7ec" class="javax.swing.JButton" binding="buttonTask3">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="3"/>
+                    </properties>
+                  </component>
+                  <component id="888aa" class="javax.swing.JButton" binding="buttonTask4">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="4"/>
+                    </properties>
+                  </component>
+                  <component id="b5b3b" class="javax.swing.JButton" binding="buttonTask6">
+                    <constraints>
+                      <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="6"/>
+                    </properties>
+                  </component>
+                  <component id="c5f5c" class="javax.swing.JButton" binding="buttonTask7">
+                    <constraints>
+                      <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="7"/>
+                    </properties>
+                  </component>
+                  <component id="dbfa4" class="javax.swing.JButton" binding="buttonTask8">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="8"/>
+                    </properties>
+                  </component>
+                  <component id="ef723" class="javax.swing.JButton" binding="buttonTask9">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="9"/>
+                    </properties>
+                  </component>
+                  <component id="dad0" class="javax.swing.JButton" binding="buttonTask10">
+                    <constraints>
+                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="10"/>
+                    </properties>
+                  </component>
+                  <component id="74624" class="javax.swing.JButton" binding="buttonTask11">
+                    <constraints>
+                      <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="11"/>
+                    </properties>
+                  </component>
+                  <component id="fc83e" class="javax.swing.JButton" binding="buttonTask12">
+                    <constraints>
+                      <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="12"/>
+                    </properties>
+                  </component>
+                  <component id="50e8c" class="javax.swing.JButton" binding="buttonTask13">
+                    <constraints>
+                      <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="13"/>
+                    </properties>
+                  </component>
+                  <component id="fb6e1" class="javax.swing.JButton" binding="buttonTask14">
+                    <constraints>
+                      <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="14"/>
+                    </properties>
+                  </component>
+                  <component id="700ad" class="javax.swing.JButton" binding="buttonTask5">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="80" height="80"/>
+                        <maximum-size width="80" height="80"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="5"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="2ba6c" binding="lowPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="10" left="5" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="1ee76" class="javax.swing.JButton" binding="buttonCreateVar">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                        <minimum-size width="50" height="40"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <text value="Составить варианты"/>
+                    </properties>
+                  </component>
+                  <hspacer id="d86da">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <component id="4d40a" class="javax.swing.JCheckBox" binding="checkAllTask">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Выбрать все"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="aed24" binding="pageSettings" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
+              <tabbedpane title="Настройки"/>
             </constraints>
-            <properties>
-              <text value="2"/>
-            </properties>
-          </component>
-          <component id="6c7ec" class="javax.swing.JButton" binding="buttonTask3">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="2ff01" binding="settingsTopPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="100"/>
+                    <maximum-size width="-1" height="100"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="f0852" class="javax.swing.JLabel" binding="labelChooseTheme">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Выберете цвет темы"/>
+                    </properties>
+                  </component>
+                  <component id="8fbc4" class="javax.swing.JRadioButton" binding="radioButtonDark">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <actionCommand value="Тёмная"/>
+                      <selected value="false"/>
+                      <text value="Тёмная"/>
+                    </properties>
+                  </component>
+                  <component id="e2889" class="javax.swing.JRadioButton" binding="radioButtonLight">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <actionCommand value="RadioButton"/>
+                      <text value="Светлая"/>
+                    </properties>
+                  </component>
+                </children>
               </grid>
-            </constraints>
-            <properties>
-              <text value="3"/>
-            </properties>
-          </component>
-          <component id="888aa" class="javax.swing.JButton" binding="buttonTask4">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
+              <grid id="30756" binding="settingsTreePanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="55496" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <text value="Выберете путь сохранения документов"/>
+                    </properties>
+                  </component>
+                  <vspacer id="a47b8">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                </children>
               </grid>
-            </constraints>
-            <properties>
-              <text value="4"/>
-            </properties>
-          </component>
-          <component id="b5b3b" class="javax.swing.JButton" binding="buttonTask6">
-            <constraints>
-              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="6"/>
-            </properties>
-          </component>
-          <component id="c5f5c" class="javax.swing.JButton" binding="buttonTask7">
-            <constraints>
-              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="7"/>
-            </properties>
-          </component>
-          <component id="dbfa4" class="javax.swing.JButton" binding="buttonTask8">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="8"/>
-            </properties>
-          </component>
-          <component id="ef723" class="javax.swing.JButton" binding="buttonTask9">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="9"/>
-            </properties>
-          </component>
-          <component id="dad0" class="javax.swing.JButton" binding="buttonTask10">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="10"/>
-            </properties>
-          </component>
-          <component id="74624" class="javax.swing.JButton" binding="buttonTask11">
-            <constraints>
-              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="11"/>
-            </properties>
-          </component>
-          <component id="fc83e" class="javax.swing.JButton" binding="buttonTask12">
-            <constraints>
-              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="12"/>
-            </properties>
-          </component>
-          <component id="50e8c" class="javax.swing.JButton" binding="buttonTask13">
-            <constraints>
-              <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="13"/>
-            </properties>
-          </component>
-          <component id="fb6e1" class="javax.swing.JButton" binding="buttonTask14">
-            <constraints>
-              <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="14"/>
-            </properties>
-          </component>
-          <component id="700ad" class="javax.swing.JButton" binding="buttonTask5">
-            <constraints>
-              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="80" height="80"/>
-                <maximum-size width="80" height="80"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="5"/>
-            </properties>
-          </component>
+            </children>
+          </grid>
         </children>
-      </grid>
-      <grid id="2ba6c" binding="lowPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="10" left="5" bottom="0" right="0"/>
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="1ee76" class="javax.swing.JButton" binding="buttonCreateVar">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="50" height="40"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value="Составить варианты"/>
-            </properties>
-          </component>
-          <hspacer id="d86da">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
-          <component id="4d40a" class="javax.swing.JCheckBox" binding="checkAllTask">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Выбрать все"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="67660" binding="topPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="5" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="87041" class="javax.swing.JLabel" binding="labelChoseTask">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Выберите номера: "/>
-            </properties>
-          </component>
-          <hspacer id="5e223">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
-          <component id="6fb32" class="javax.swing.JLabel" binding="labelInputCountVar">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Количество вариантов:"/>
-            </properties>
-          </component>
-          <component id="e02d3" class="javax.swing.JTextField" binding="textFieldCountVar">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-                <maximum-size width="80" height="50"/>
-              </grid>
-            </constraints>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
-        </children>
-      </grid>
+      </tabbedpane>
     </children>
   </grid>
 </form>
