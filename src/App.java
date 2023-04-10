@@ -2,11 +2,13 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
 
 
 public class App extends JFrame {
@@ -44,10 +46,12 @@ public class App extends JFrame {
     private JLabel labelChooseTheme;
     private JPanel settingsTopPanel;
     private JPanel settingsTreePanel;
+    private JLabel labelChoosePath;
+    private JButton buttonChoose;
 
     private ColorListener cl;
     private RadioListener rl;
-    public  boolean theme = true;
+
 
 
     class ColorListener implements ActionListener {
@@ -73,12 +77,12 @@ public class App extends JFrame {
                      setDefaultLookAndFeelDecorated(true);
                      ex.printStackTrace();
                  }
+                 initPropertiesLight();
                  SwingUtilities.updateComponentTreeUI(page1Panel);
                  SwingUtilities.updateComponentTreeUI(pageSettings);
-
-
             }
-             else if ((radioButtonDark.isSelected())) {
+
+             else if (radioButtonDark.isSelected()) {
                  try {
 
                      UIManager.setLookAndFeel(new FlatMacDarkLaf());
@@ -86,12 +90,28 @@ public class App extends JFrame {
                      setDefaultLookAndFeelDecorated(true);
                      ex.printStackTrace();
                  }
+                 initPropertiesBlack();
                  SwingUtilities.updateComponentTreeUI(page1Panel);
                  SwingUtilities.updateComponentTreeUI(pageSettings);
 
-
-
              }
+        }
+    }
+
+    class pathListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFileChooser rootChoose = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            rootChoose.showSaveDialog(null);
+
+            int returnValue = rootChoose.showSaveDialog(null);
+
+
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = rootChoose.getSelectedFile();
+                System.out.println(selectedFile.getAbsolutePath());
+            }
+
         }
     }
 
@@ -108,27 +128,29 @@ public class App extends JFrame {
         cl = new ColorListener();
         rl = new RadioListener();
 
-        initProperties(buttonTask1);
-        initProperties(buttonTask2);
-        initProperties(buttonTask3);
-        initProperties(buttonTask4);
-        initProperties(buttonTask5);
-        initProperties(buttonTask6);
-        initProperties(buttonTask7);
-        initProperties(buttonTask8);
-        initProperties(buttonTask9);
-        initProperties(buttonTask10);
-        initProperties(buttonTask11);
-        initProperties(buttonTask12);
-        initProperties(buttonTask13);
-        initProperties(buttonTask14);
+        buttonProp(buttonTask1);
+        buttonProp(buttonTask2);
+        buttonProp(buttonTask3);
+        buttonProp(buttonTask4);
+        buttonProp(buttonTask5);
+        buttonProp(buttonTask6);
+        buttonProp(buttonTask7);
+        buttonProp(buttonTask8);
+        buttonProp(buttonTask9);
+        buttonProp(buttonTask10);
+        buttonProp(buttonTask11);
+        buttonProp(buttonTask12);
+        buttonProp(buttonTask13);
+        buttonProp(buttonTask14);
 
+        pathListener pl = new pathListener();
+        buttonChoose.addActionListener(pl);
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButtonDark);
         buttonGroup.add(radioButtonLight);
         radioButtonDark.addActionListener(rl);
         radioButtonLight.addActionListener(rl);
-
+        initPropertiesBlack();
 
         checkAllTask.addItemListener(new ItemListener() {
             @Override
@@ -154,11 +176,9 @@ public class App extends JFrame {
             public void selectButton (JButton button) {
 
                 if (checkAllTask.isSelected()){
-
                     button.setBackground( new Color(66,144,224) );
                 }
                 else{
-
                     button.setBackground(new JButton().getBackground());
                 }
             }
@@ -166,13 +186,15 @@ public class App extends JFrame {
 
 
 
-
     }
 
-    private void initProperties(JButton button) {
+    private void buttonProp(JButton button){
         button.addActionListener(cl);
         button.setFont(new Font("Segoe UI" , Font.PLAIN , 18));
+    }
+    private void initPropertiesBlack() {
 
+        tabPane1.setBackground(new Color(26, 26, 26));
         page1Panel.setBackground(new Color(194, 194, 194));
         topPanel.setBackground(new Color(194, 194, 194));
         buttonPanel.setBackground(new Color(194, 194, 194));
@@ -180,8 +202,7 @@ public class App extends JFrame {
         mainPanel.setBackground(new Color(194, 194, 194));
         pageSettings.setBackground(new Color(194, 194, 194));
         settingsTopPanel.setBackground(new Color(194, 194, 194));
-
-
+        settingsTreePanel.setBackground(new Color(194, 194, 194));
 
         labelInputCountVar.setFont(new Font("Segoe UI", Font.PLAIN, 28));
         labelInputCountVar.setForeground(new Color(1,1,1));
@@ -195,18 +216,42 @@ public class App extends JFrame {
         textFieldCountVar.setBackground(new Color(222, 216, 216));
         textFieldCountVar.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
 
-
-
         checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         checkAllTask.setFont(new Font("Segoe UI" , Font.PLAIN , 24));
         checkAllTask.setForeground(new Color(1,1,1));
         buttonCreateVar.setFont(new Font("Segoe UI" , Font.PLAIN , 20));
 
+        labelChooseTheme.setForeground(new Color(1, 1, 1));
+        labelChooseTheme.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+
+        radioButtonLight.setForeground(new Color(1, 1, 1));
+        radioButtonLight.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+
+        radioButtonDark.setForeground(new Color(1, 1, 1));
+        radioButtonDark.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+
+        labelChoosePath.setForeground(new Color(1, 1, 1));
+        labelChoosePath.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+
+
 
     }
+    private void initPropertiesLight(){
+        page1Panel.setBackground(new Color(255, 255, 255));
+        topPanel.setBackground(new Color(255, 255, 255));
 
-    public boolean getTheme() {
-        return theme;
+        tabPane1.setBackground(new Color(96, 96, 96));
+
+        buttonPanel.setBackground(new Color(255, 255, 255));
+        lowPanel.setBackground(new Color(255, 255, 255));
+        mainPanel.setBackground(new Color(255, 255, 255));
+        pageSettings.setBackground(new Color(255, 255, 255));
+        settingsTopPanel.setBackground(new Color(255, 255, 255));
+        settingsTreePanel.setBackground(new Color(255, 255, 255));
+
+        textFieldCountVar.setForeground(new Color(0, 0, 0));
+        textFieldCountVar.setBackground(new Color(255, 255, 255));
+        textFieldCountVar.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
     }
 
     public static void main(String[] args) {
@@ -220,7 +265,6 @@ public class App extends JFrame {
         }
 
         new App();
-
 
     }
 }
