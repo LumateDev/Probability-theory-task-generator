@@ -11,6 +11,7 @@ import java.awt.event.ItemListener;
 import java.io.File;
 
 
+
 public class App extends JFrame {
 
     private JPanel mainPanel;
@@ -49,19 +50,19 @@ public class App extends JFrame {
     private JLabel labelChoosePath;
     private JButton buttonChoose;
 
-    private ColorListener cl;
-    private RadioListener rl;
+    private final ColorListener cl;
 
 
-
-    class ColorListener implements ActionListener {
+    static class ColorListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton)e.getSource();
-            if(button.getBackground() !=  new JButton().getBackground())
+            if(button.getBackground() !=  new JButton().getBackground()) {
                 button.setBackground(new JButton().getBackground());
-            else
-                button.setBackground( new Color(66,144,224) );
+            }
+            else {
+                button.setBackground(new Color(66, 144, 224));
 
+            }
         }
     }
 
@@ -98,20 +99,34 @@ public class App extends JFrame {
         }
     }
 
-    class pathListener implements ActionListener{
+    static class pathListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+
             JFileChooser rootChoose = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-            rootChoose.showSaveDialog(null);
-
             int returnValue = rootChoose.showSaveDialog(null);
-
-
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = rootChoose.getSelectedFile();
                 System.out.println(selectedFile.getAbsolutePath());
             }
+        }
+    }
 
+    class createVarListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            try{
+                int countVar = Integer.parseInt(textFieldCountVar.getText());
+                String answer = "Запрос на создание " + countVar + " вариантов получен" + "\nНомера:";
+                JOptionPane.showMessageDialog(mainPanel,answer);
+                textFieldCountVar.setText("");
+            }
+            catch (Exception ex){
+                String answer = "Количество вариантов должно быть целым числом";
+                JOptionPane.showMessageDialog(mainPanel,answer);
+                textFieldCountVar.setText("");
+            }
         }
     }
 
@@ -126,7 +141,7 @@ public class App extends JFrame {
         setResizable(false);
         setVisible(true);
         cl = new ColorListener();
-        rl = new RadioListener();
+        RadioListener rl = new RadioListener();
 
         buttonProp(buttonTask1);
         buttonProp(buttonTask2);
@@ -143,6 +158,9 @@ public class App extends JFrame {
         buttonProp(buttonTask13);
         buttonProp(buttonTask14);
 
+        createVarListener crl = new createVarListener();
+        buttonCreateVar.addActionListener(crl);
+
         pathListener pl = new pathListener();
         buttonChoose.addActionListener(pl);
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -155,7 +173,6 @@ public class App extends JFrame {
         checkAllTask.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-
 
                 selectButton(buttonTask1);
                 selectButton(buttonTask2);
@@ -177,20 +194,20 @@ public class App extends JFrame {
 
                 if (checkAllTask.isSelected()){
                     button.setBackground( new Color(66,144,224) );
+
                 }
                 else{
                     button.setBackground(new JButton().getBackground());
+
                 }
             }
         });
-
-
 
     }
 
     private void buttonProp(JButton button){
         button.addActionListener(cl);
-        button.setFont(new Font("Segoe UI" , Font.PLAIN , 18));
+        button.setFont(new Font("Comic sans mc" , Font.PLAIN , 18));
     }
     private void initPropertiesBlack() {
 
@@ -204,34 +221,34 @@ public class App extends JFrame {
         settingsTopPanel.setBackground(new Color(194, 194, 194));
         settingsTreePanel.setBackground(new Color(194, 194, 194));
 
-        labelInputCountVar.setFont(new Font("Segoe UI", Font.PLAIN, 28));
+        labelInputCountVar.setFont(new Font("Comic sans mc", Font.PLAIN, 28));
         labelInputCountVar.setForeground(new Color(1,1,1));
         labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
 
-        labelChoseTask.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+        labelChoseTask.setFont(new Font("Comic sans mc", Font.PLAIN, 24));
         labelChoseTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
         labelChoseTask.setForeground(new Color(1,1,1));
 
         textFieldCountVar.setForeground(new Color(68, 68, 68));
         textFieldCountVar.setBackground(new Color(222, 216, 216));
-        textFieldCountVar.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+        textFieldCountVar.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
 
         checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        checkAllTask.setFont(new Font("Segoe UI" , Font.PLAIN , 24));
+        checkAllTask.setFont(new Font("Comic sans mc" , Font.PLAIN , 24));
         checkAllTask.setForeground(new Color(1,1,1));
-        buttonCreateVar.setFont(new Font("Segoe UI" , Font.PLAIN , 20));
+        buttonCreateVar.setFont(new Font("Comic sans mc" , Font.PLAIN , 20));
 
         labelChooseTheme.setForeground(new Color(1, 1, 1));
-        labelChooseTheme.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+        labelChooseTheme.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
 
         radioButtonLight.setForeground(new Color(1, 1, 1));
-        radioButtonLight.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+        radioButtonLight.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
 
         radioButtonDark.setForeground(new Color(1, 1, 1));
-        radioButtonDark.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+        radioButtonDark.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
 
         labelChoosePath.setForeground(new Color(1, 1, 1));
-        labelChoosePath.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+        labelChoosePath.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
 
 
 
@@ -251,7 +268,7 @@ public class App extends JFrame {
 
         textFieldCountVar.setForeground(new Color(0, 0, 0));
         textFieldCountVar.setBackground(new Color(255, 255, 255));
-        textFieldCountVar.setFont(new Font("Segoe UI" , Font.PLAIN, 16));
+        textFieldCountVar.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
     }
 
     public static void main(String[] args) {
