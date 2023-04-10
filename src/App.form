@@ -187,7 +187,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="Сосатавить варианты"/>
+              <text value="Составить варианты"/>
             </properties>
           </component>
           <hspacer id="d86da">
