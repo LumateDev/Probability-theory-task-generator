@@ -11,7 +11,6 @@ import java.awt.event.ItemListener;
 import java.io.File;
 
 
-
 public class App extends JFrame {
 
     private JPanel mainPanel;
@@ -52,17 +51,30 @@ public class App extends JFrame {
 
     private final ColorListener cl;
 
+    private TaskList tl = new TaskList();
 
-    static class ColorListener implements ActionListener {
+    private  JButton[] buttons;
+
+
+
+
+     class ColorListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton)e.getSource();
+            int elem = Integer.parseInt(button.getText());
+            Task task = new Task(elem);
+
             if(button.getBackground() !=  new JButton().getBackground()) {
                 button.setBackground(new JButton().getBackground());
+                tl.delByTaskNumber(elem);
+
             }
             else {
                 button.setBackground(new Color(66, 144, 224));
-
+                tl.add(task);
             }
+
+            tl.print();
         }
     }
 
@@ -107,6 +119,7 @@ public class App extends JFrame {
             int returnValue = rootChoose.showSaveDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = rootChoose.getSelectedFile();
+                // Получаем абсолютный путь до файла
                 System.out.println(selectedFile.getAbsolutePath());
             }
         }
@@ -118,8 +131,9 @@ public class App extends JFrame {
 
             try{
                 int countVar = Integer.parseInt(textFieldCountVar.getText());
-                String answer = "Запрос на создание " + countVar + " вариантов получен" + "\nНомера:";
-                JOptionPane.showMessageDialog(mainPanel,answer);
+                String answer = "Запрос на создание " + countVar + " вариантов получен" + "\nНомера: ";
+                String numbers = tl.printNumber();
+                JOptionPane.showMessageDialog(mainPanel,answer + numbers);
                 textFieldCountVar.setText("");
             }
             catch (Exception ex){
@@ -130,8 +144,6 @@ public class App extends JFrame {
         }
     }
 
-
-
     App(){
 
         super("Генератора задач по Теории вероятности");
@@ -140,24 +152,11 @@ public class App extends JFrame {
         setSize(720, 460);
         setResizable(false);
         setVisible(true);
+        buttons = new JButton []{buttonTask1,buttonTask2,buttonTask3,buttonTask4,buttonTask5, buttonTask6,buttonTask7,
+                buttonTask8,buttonTask9,buttonTask10,buttonTask11,buttonTask12,buttonTask13,buttonTask14};
         cl = new ColorListener();
         RadioListener rl = new RadioListener();
-
-        buttonProp(buttonTask1);
-        buttonProp(buttonTask2);
-        buttonProp(buttonTask3);
-        buttonProp(buttonTask4);
-        buttonProp(buttonTask5);
-        buttonProp(buttonTask6);
-        buttonProp(buttonTask7);
-        buttonProp(buttonTask8);
-        buttonProp(buttonTask9);
-        buttonProp(buttonTask10);
-        buttonProp(buttonTask11);
-        buttonProp(buttonTask12);
-        buttonProp(buttonTask13);
-        buttonProp(buttonTask14);
-
+        buttonProp();
         createVarListener crl = new createVarListener();
         buttonCreateVar.addActionListener(crl);
 
@@ -174,40 +173,36 @@ public class App extends JFrame {
             @Override
             public void itemStateChanged(ItemEvent e) {
 
-                selectButton(buttonTask1);
-                selectButton(buttonTask2);
-                selectButton(buttonTask3);
-                selectButton(buttonTask4);
-                selectButton(buttonTask5);
-                selectButton(buttonTask6);
-                selectButton(buttonTask7);
-                selectButton(buttonTask8);
-                selectButton(buttonTask9);
-                selectButton(buttonTask10);
-                selectButton(buttonTask11);
-                selectButton(buttonTask12);
-                selectButton(buttonTask13);
-                selectButton(buttonTask14);
-
+                for(int i = 0; i < buttons.length; i++) {
+                    selectButton(buttons[i]);
+                }
             }
             public void selectButton (JButton button) {
 
+
+                int elem = Integer.parseInt(button.getText());
+                Task task = new Task(elem);
                 if (checkAllTask.isSelected()){
                     button.setBackground( new Color(66,144,224) );
+                    tl.add(task);
 
                 }
                 else{
                     button.setBackground(new JButton().getBackground());
-
+                    tl.delByTaskNumber(elem);
                 }
+
+                tl.print();
             }
         });
-
     }
 
-    private void buttonProp(JButton button){
-        button.addActionListener(cl);
-        button.setFont(new Font("Comic sans mc" , Font.PLAIN , 18));
+    private void buttonProp(){
+
+         for(int i = 0; i < buttons.length; i ++) {
+             buttons[i].addActionListener(cl);
+             buttons[i].setFont(new Font("Comic sans mc" , Font.PLAIN , 18));
+         }
     }
     private void initPropertiesBlack() {
 
@@ -250,8 +245,6 @@ public class App extends JFrame {
         labelChoosePath.setForeground(new Color(1, 1, 1));
         labelChoosePath.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
 
-
-
     }
     private void initPropertiesLight(){
         page1Panel.setBackground(new Color(255, 255, 255));
@@ -280,7 +273,6 @@ public class App extends JFrame {
             setDefaultLookAndFeelDecorated(true);
             ex.printStackTrace();
         }
-
         new App();
 
     }
