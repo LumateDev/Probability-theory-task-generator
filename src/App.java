@@ -1,6 +1,5 @@
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
@@ -10,12 +9,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 
-
 public class App extends JFrame {
-
     private JPanel mainPanel;
     private JPanel buttonPanel;
-
     private JButton buttonTask1;
     private JButton buttonTask2;
     private JButton buttonTask3;
@@ -31,7 +27,6 @@ public class App extends JFrame {
     private JButton buttonTask13;
     private JButton buttonTask14;
     private JTextField textFieldCountVar;
-
     private JLabel labelInputCountVar;
     private JPanel lowPanel;
     private JButton buttonCreateVar;
@@ -48,15 +43,11 @@ public class App extends JFrame {
     private JPanel settingsTreePanel;
     private JLabel labelChoosePath;
     private JButton buttonChoose;
-
     private final ColorListener cl;
 
-    private TaskList tl = new TaskList();
+    private final TaskList tl = new TaskList();
 
-    private  JButton[] buttons;
-
-
-
+    private final JButton[] buttons;
 
      class ColorListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -67,14 +58,12 @@ public class App extends JFrame {
             if(button.getBackground() !=  new JButton().getBackground()) {
                 button.setBackground(new JButton().getBackground());
                 tl.delByTaskNumber(elem);
-
             }
-            else {
+            else
+            {
                 button.setBackground(new Color(66, 144, 224));
                 tl.add(task);
             }
-
-            tl.print();
         }
     }
 
@@ -83,10 +72,11 @@ public class App extends JFrame {
 
              if (radioButtonLight.isSelected()) {
                 radioButtonDark.setSelected(false);
-                 try {
+                 try{
 
                      UIManager.setLookAndFeel(new FlatMacLightLaf());
-                 } catch (Exception ex) {
+                 }
+                 catch (Exception ex){
                      setDefaultLookAndFeelDecorated(true);
                      ex.printStackTrace();
                  }
@@ -94,23 +84,21 @@ public class App extends JFrame {
                  SwingUtilities.updateComponentTreeUI(page1Panel);
                  SwingUtilities.updateComponentTreeUI(pageSettings);
             }
-
-             else if (radioButtonDark.isSelected()) {
-                 try {
-
+             else if (radioButtonDark.isSelected())
+             {
+                 try{
                      UIManager.setLookAndFeel(new FlatMacDarkLaf());
-                 } catch (Exception ex) {
+                 }
+                 catch (Exception ex){
                      setDefaultLookAndFeelDecorated(true);
                      ex.printStackTrace();
                  }
                  initPropertiesBlack();
                  SwingUtilities.updateComponentTreeUI(page1Panel);
                  SwingUtilities.updateComponentTreeUI(pageSettings);
-
              }
         }
     }
-
     static class pathListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -132,9 +120,12 @@ public class App extends JFrame {
             try{
                 int countVar = Integer.parseInt(textFieldCountVar.getText());
                 String answer = "Запрос на создание " + countVar + " вариантов получен" + "\nНомера: ";
+                tl.sort();
                 String numbers = tl.printNumber();
-                JOptionPane.showMessageDialog(mainPanel,answer + numbers);
-                textFieldCountVar.setText("");
+                if(tl.getSize() == 0)
+                    JOptionPane.showMessageDialog(mainPanel, "Выберете хотя бы один номер");
+                else
+                    JOptionPane.showMessageDialog(mainPanel,answer + numbers);
             }
             catch (Exception ex){
                 String answer = "Количество вариантов должно быть целым числом";
@@ -143,9 +134,16 @@ public class App extends JFrame {
             }
         }
     }
-
+    class checkItemListener implements ItemListener
+    {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            for (JButton button : buttons) {
+                selectButton(button);
+            }
+        }
+    }
     App(){
-
         super("Генератора задач по Теории вероятности");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(mainPanel);
@@ -158,8 +156,8 @@ public class App extends JFrame {
         RadioListener rl = new RadioListener();
         buttonProp();
         createVarListener crl = new createVarListener();
+        checkItemListener il = new checkItemListener();
         buttonCreateVar.addActionListener(crl);
-
         pathListener pl = new pathListener();
         buttonChoose.addActionListener(pl);
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -168,41 +166,30 @@ public class App extends JFrame {
         radioButtonDark.addActionListener(rl);
         radioButtonLight.addActionListener(rl);
         initPropertiesBlack();
-
-        checkAllTask.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-
-                for(int i = 0; i < buttons.length; i++) {
-                    selectButton(buttons[i]);
-                }
-            }
-            public void selectButton (JButton button) {
-
-
-                int elem = Integer.parseInt(button.getText());
-                Task task = new Task(elem);
-                if (checkAllTask.isSelected()){
-                    button.setBackground( new Color(66,144,224) );
-                    tl.add(task);
-
-                }
-                else{
-                    button.setBackground(new JButton().getBackground());
-                    tl.delByTaskNumber(elem);
-                }
-
-                tl.print();
-            }
-        });
+        checkAllTask.addItemListener(il);
     }
 
     private void buttonProp(){
 
-         for(int i = 0; i < buttons.length; i ++) {
-             buttons[i].addActionListener(cl);
-             buttons[i].setFont(new Font("Comic sans mc" , Font.PLAIN , 18));
-         }
+        for (JButton button : buttons) {
+            button.addActionListener(cl);
+            button.setFont(new Font("Comic sans mc", Font.PLAIN, 18));
+        }
+    }
+    public void selectButton (JButton button) {
+
+        int elem = Integer.parseInt(button.getText());
+        Task task = new Task(elem);
+        if (checkAllTask.isSelected()){
+            button.setBackground( new Color(66,144,224) );
+            tl.add(task);
+
+        }
+        else{
+            button.setBackground(new JButton().getBackground());
+            tl.delByTaskNumber(elem);
+        }
+
     }
     private void initPropertiesBlack() {
 
@@ -215,50 +202,38 @@ public class App extends JFrame {
         pageSettings.setBackground(new Color(194, 194, 194));
         settingsTopPanel.setBackground(new Color(194, 194, 194));
         settingsTreePanel.setBackground(new Color(194, 194, 194));
-
         labelInputCountVar.setFont(new Font("Comic sans mc", Font.PLAIN, 28));
         labelInputCountVar.setForeground(new Color(1,1,1));
         labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
-
         labelChoseTask.setFont(new Font("Comic sans mc", Font.PLAIN, 24));
         labelChoseTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
         labelChoseTask.setForeground(new Color(1,1,1));
-
         textFieldCountVar.setForeground(new Color(68, 68, 68));
         textFieldCountVar.setBackground(new Color(222, 216, 216));
         textFieldCountVar.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
-
         checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         checkAllTask.setFont(new Font("Comic sans mc" , Font.PLAIN , 24));
         checkAllTask.setForeground(new Color(1,1,1));
         buttonCreateVar.setFont(new Font("Comic sans mc" , Font.PLAIN , 20));
-
         labelChooseTheme.setForeground(new Color(1, 1, 1));
         labelChooseTheme.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
-
         radioButtonLight.setForeground(new Color(1, 1, 1));
         radioButtonLight.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
-
         radioButtonDark.setForeground(new Color(1, 1, 1));
         radioButtonDark.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
-
         labelChoosePath.setForeground(new Color(1, 1, 1));
         labelChoosePath.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
-
     }
     private void initPropertiesLight(){
         page1Panel.setBackground(new Color(255, 255, 255));
         topPanel.setBackground(new Color(255, 255, 255));
-
         tabPane1.setBackground(new Color(96, 96, 96));
-
         buttonPanel.setBackground(new Color(255, 255, 255));
         lowPanel.setBackground(new Color(255, 255, 255));
         mainPanel.setBackground(new Color(255, 255, 255));
         pageSettings.setBackground(new Color(255, 255, 255));
         settingsTopPanel.setBackground(new Color(255, 255, 255));
         settingsTreePanel.setBackground(new Color(255, 255, 255));
-
         textFieldCountVar.setForeground(new Color(0, 0, 0));
         textFieldCountVar.setBackground(new Color(255, 255, 255));
         textFieldCountVar.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
@@ -274,6 +249,5 @@ public class App extends JFrame {
             ex.printStackTrace();
         }
         new App();
-
     }
 }
