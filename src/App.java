@@ -124,8 +124,12 @@ public class App extends JFrame {
                 String numbers = tl.printNumber();
                 if(tl.getSize() == 0)
                     JOptionPane.showMessageDialog(mainPanel, "Выберете хотя бы один номер");
-                else
-                    JOptionPane.showMessageDialog(mainPanel,answer + numbers);
+                else {
+                    JOptionPane.showMessageDialog(mainPanel, answer + numbers);
+                    //Пример вызова класса с back-end кода
+                    int[] taskArray = {1, 2};//просто пример
+                    Test test = new Test(taskArray, countVar);
+                }
             }
             catch (Exception ex){
                 String answer = "Количество вариантов должно быть целым числом";
