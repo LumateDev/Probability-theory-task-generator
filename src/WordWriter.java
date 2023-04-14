@@ -24,28 +24,32 @@ public class WordWriter {
         for(int variant = 1; variant <= counterVariantos; variant++){
             //code create File variant
             fileDocx = new FileDocx("Вариант " + String.valueOf(variant));
+            fileDocx.addTextBoltCenter("Тест 2. Вариант " + variant);
+            fileDocx.addHeader();
             for(int task = 0; task < taskArray.length; task++){
                 fileDocx.addTextBolt("Задание " + taskArray[task]);
-                creatTask(taskArray[task]);
+                createTask(taskArray[task]);
             }
             fileDocx.printToFile();
         }
     }
 
-    void creatTask(int t){
+    void createTask(int t){
         switch (t){
             case 1:
                 //other code
-                fileDocx.addText("Два стрелка стреляют по мишени. Вероятность попадания в мишень при одном выстреле для первого стрелка равна");
-                fileDocx.addText(String.valueOf(getRandomNumber(0.1, 1)));
-                fileDocx.addText(",а для второго —");
-                fileDocx.addText(String.valueOf(getRandomNumber(0.1, 1)));
-                fileDocx.addTextBreak(". Найти вероятность того, что при одном залпе в мишень попадает только один из стрелков.");
+                fileDocx.addTextBreak("Два стрелка стреляют по мишени. Вероятность попадания в мишень при одном выстреле для первого стрелка равна " +
+                        getRandomNumber(0.1, 1) +
+                        ", а для второго —" +
+                        getRandomNumber(0.1, 1) +
+                        ". Найти вероятность того, что при одном залпе в мишень попадает только один из стрелков."
+                );
                 break;
             case 2:
-                fileDocx.addText("В ящике");
-                fileDocx.addText(String.valueOf(getRandomNumber(5, 15)));
-                fileDocx.addText("деталей, среди которых шесть окрашенных. Сборщик наудачу извлекает четыре детали. Найти вероятность того, что все извлеченные детали окажутся окрашенными.");
+                fileDocx.addTextBreak("В ящике " +
+                        getRandomNumber(5, 15) +
+                        " деталей, среди которых шесть окрашенных. Сборщик наудачу извлекает четыре детали. Найти вероятность того, что все извлеченные детали окажутся окрашенными."
+                );
                 //other code
                 break;
             case 3:
