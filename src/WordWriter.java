@@ -23,7 +23,7 @@ public class WordWriter {
         //create File result
         for(int variant = 1; variant <= counterVariantos; variant++){
             //code create File variant
-            fileDocx = new FileDocx("Вариант" + String.valueOf(variant));
+            fileDocx = new FileDocx("Вариант " + String.valueOf(variant));
             for(int task = 0; task < taskArray.length; task++){
                 fileDocx.addTextBolt("Задание " + taskArray[task]);
                 creatTask(taskArray[task]);

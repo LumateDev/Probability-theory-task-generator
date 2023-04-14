@@ -12,7 +12,6 @@ import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Timer;
 import java.util.stream.Collectors;
 
 public class App extends JFrame {
@@ -221,7 +220,7 @@ public class App extends JFrame {
 
         for (JButton button : buttons) {
             button.addActionListener(cl);
-            button.setFont(new Font("Comic sans mc", Font.PLAIN, 18));
+            button.setFont(new Font("Verdana", Font.PLAIN, 18));
         }
     }
     public void selectButton (JButton button) {
@@ -250,29 +249,29 @@ public class App extends JFrame {
         pageSettings.setBackground(new Color(194, 194, 194));
         settingsTopPanel.setBackground(new Color(194, 194, 194));
         settingsTreePanel.setBackground(new Color(194, 194, 194));
-        labelInputCountVar.setFont(new Font("Comic sans mc", Font.PLAIN, 28));
+        labelInputCountVar.setFont(new Font("Verdana", Font.PLAIN, 28));
         labelInputCountVar.setForeground(new Color(1,1,1));
         labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
-        labelChoseTask.setFont(new Font("Comic sans mc", Font.PLAIN, 24));
+        labelChoseTask.setFont(new Font("Verdana", Font.PLAIN, 24));
         labelChoseTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
         labelChoseTask.setForeground(new Color(1,1,1));
         textFieldCountVar.setForeground(new Color(68, 68, 68));
         textFieldCountVar.setBackground(new Color(222, 216, 216));
-        textFieldCountVar.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        textFieldCountVar.setFont(new Font("Verdana" , Font.PLAIN, 16));
         checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-        checkAllTask.setFont(new Font("Comic sans mc" , Font.PLAIN , 24));
+        checkAllTask.setFont(new Font("Verdana" , Font.PLAIN , 24));
         checkAllTask.setForeground(new Color(1,1,1));
-        buttonCreateVar.setFont(new Font("Comic sans mc" , Font.PLAIN , 20));
+        buttonCreateVar.setFont(new Font("Verdana" , Font.PLAIN , 20));
         labelChooseTheme.setForeground(new Color(1, 1, 1));
-        labelChooseTheme.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 16));
         radioButtonLight.setForeground(new Color(1, 1, 1));
-        radioButtonLight.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 16));
         radioButtonDark.setForeground(new Color(1, 1, 1));
-        radioButtonDark.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 16));
         radioButtonContrast.setForeground(new Color(1, 1, 1));
-        radioButtonContrast.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
         labelChoosePath.setForeground(new Color(1, 1, 1));
-        labelChoosePath.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
     }
 
     //todo lightDesign
@@ -288,10 +287,42 @@ public class App extends JFrame {
         settingsTreePanel.setBackground(new Color(255, 255, 255));
         textFieldCountVar.setForeground(new Color(0, 0, 0));
         textFieldCountVar.setBackground(new Color(255, 255, 255));
-        textFieldCountVar.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        textFieldCountVar.setFont(new Font("Verdana" , Font.PLAIN, 16));
     }
     //todo contrastDesign
     private void initPropertiesContrast() {
+        tabPane1.setBackground(new Color(24, 24, 24));
+        page1Panel.setBackground(new Color(16, 16, 16));
+        topPanel.setBackground(new Color(16, 16, 16));
+        buttonPanel.setBackground(new Color(16, 16, 16));
+        lowPanel.setBackground(new Color(16, 16, 16));
+        mainPanel.setBackground(new Color(24, 24, 24));
+        pageSettings.setBackground(new Color(16, 16, 16));
+        settingsTopPanel.setBackground(new Color(16, 16, 16));
+        settingsTreePanel.setBackground(new Color(16, 16, 16));
+        labelInputCountVar.setFont(new Font("Verdana", Font.PLAIN, 28));
+        labelInputCountVar.setForeground(new Color(133,133,133));
+        labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
+        labelChoseTask.setFont(new Font("Verdana", Font.PLAIN, 24));
+        labelChoseTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
+        labelChoseTask.setForeground(new Color(133,133,133));
+        textFieldCountVar.setForeground(new Color(217, 220, 225));
+        textFieldCountVar.setBackground(new Color(88, 88, 88));
+        textFieldCountVar.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        checkAllTask.setFont(new Font("Verdana" , Font.PLAIN , 24));
+        checkAllTask.setForeground(new Color(88,88,88));
+        labelChooseTheme.setForeground(new Color(88, 88, 88));
+        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonLight.setForeground(new Color(88, 88, 88));
+        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonDark.setForeground(new Color(88, 88, 88));
+        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonContrast.setForeground(new Color(88, 88, 88));
+        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChoosePath.setForeground(new Color(88, 88, 88));
+        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
+
 
     }
 
