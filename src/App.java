@@ -1,5 +1,6 @@
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
@@ -8,6 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class App extends JFrame {
     private JPanel mainPanel;
@@ -45,7 +49,7 @@ public class App extends JFrame {
     private JButton buttonChoose;
     private final ColorListener cl;
 
-    private final TaskList tl = new TaskList();
+    private final Set<Task> taskSet = new HashSet<>();
 
     private final JButton[] buttons;
 
@@ -57,12 +61,12 @@ public class App extends JFrame {
 
             if(button.getBackground() !=  new JButton().getBackground()) {
                 button.setBackground(new JButton().getBackground());
-                tl.delByTaskNumber(elem);
+                taskSet.remove(task);
             }
             else
             {
                 button.setBackground(new Color(66, 144, 224));
-                tl.add(task);
+                taskSet.add(task);
             }
         }
     }
@@ -119,20 +123,33 @@ public class App extends JFrame {
 
             try{
                 int countVar = Integer.parseInt(textFieldCountVar.getText());
-                String answer = "Запрос на создание " + countVar + " вариантов получен" + "\nНомера: ";
-                tl.sort();
-                String numbers = tl.printNumber();
-                if(tl.getSize() == 0)
-                    JOptionPane.showMessageDialog(mainPanel, "Выберете хотя бы один номер");
+                String answer = "Создание успешно завершено! Ваши " + countVar + " вариантов находятся в папке 'Варианты' на рабочем столе."+
+                        "\nНабор номеров в варианте: ";
+
+                String remark = "\n\nТак же при желании вы можете сменить путь сохранения сгенерированных вариантов во вкладке 'Настройки'.";
+                /* пацаны вы просто зацените эту строку, это вообще кайф. Она столько когда заменила.
+                   У меня ещё было пару вариантов немного другой реализации, но в итоге я выбрал эту,
+                   она и по времени сбалансированная и лаконичная, и читабельная. */
+                String stringNumbersOfSet = taskSet.stream()
+                        .sorted(Task.numberComparator)
+                        .map(Task::toString)
+                        .collect(Collectors
+                                .joining(",")
+                        );
+                if(taskSet.size() == 0)
+                    JOptionPane.showMessageDialog(mainPanel, "Выберете хотя бы один номер!");
                 else {
-                    JOptionPane.showMessageDialog(mainPanel, answer + numbers);
+                    JOptionPane.showMessageDialog(mainPanel, answer + stringNumbersOfSet + "." + remark );
                     //Пример вызова класса с back-end кода
-                    int[] taskArray = {1, 2};//просто пример
-                    Test test = new Test(taskArray, countVar);
+                    int [] taskArray = taskSet.stream()
+                            .sorted(Task.numberComparator)
+                            .mapToInt(Task::getNumberTask)
+                            .toArray();
+                    WordWriter wordWriter = new WordWriter(taskArray, countVar);
                 }
             }
             catch (Exception ex){
-                String answer = "Количество вариантов должно быть целым числом";
+                String answer = "Количество вариантов должно быть целым числом!";
                 JOptionPane.showMessageDialog(mainPanel,answer);
                 textFieldCountVar.setText("");
             }
@@ -186,12 +203,12 @@ public class App extends JFrame {
         Task task = new Task(elem);
         if (checkAllTask.isSelected()){
             button.setBackground( new Color(66,144,224) );
-            tl.add(task);
+            taskSet.add(task);
 
         }
         else{
             button.setBackground(new JButton().getBackground());
-            tl.delByTaskNumber(elem);
+            taskSet.remove(task);
         }
 
     }

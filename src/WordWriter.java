@@ -1,10 +1,10 @@
 import java.util.Random;
 
-public class Test {
+public class WordWriter {
     private int[] taskArray;
     private int counterVariantos;
     private FileDocx fileDocx;
-    Test(int[] taskArray, int counterVariantos){
+    WordWriter(int[] taskArray, int counterVariantos){
         this.taskArray = taskArray;
         this.counterVariantos = counterVariantos;
 
@@ -23,10 +23,10 @@ public class Test {
         //create File result
         for(int variant = 1; variant <= counterVariantos; variant++){
             //code create File variant
-            fileDocx = new FileDocx("Variant" + String.valueOf(variant));
-            for(int task = 1; task <= taskArray.length; task++){
-                fileDocx.addTextBolt("Задание" + String.valueOf(task));
-                creatTask(task);
+            fileDocx = new FileDocx("Вариант" + String.valueOf(variant));
+            for(int task = 0; task < taskArray.length; task++){
+                fileDocx.addTextBolt("Задание " + taskArray[task]);
+                creatTask(taskArray[task]);
             }
             fileDocx.printToFile();
         }
