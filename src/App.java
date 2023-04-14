@@ -1,3 +1,4 @@
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
@@ -11,6 +12,7 @@ import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Timer;
 import java.util.stream.Collectors;
 
 public class App extends JFrame {
@@ -49,12 +51,12 @@ public class App extends JFrame {
     private JPanel pageSettings;
     private JRadioButton radioButtonLight;
     private JRadioButton radioButtonDark;
+    private JRadioButton radioButtonContrast;
     private JLabel labelChooseTheme;
     private JPanel settingsTopPanel;
     private JPanel settingsTreePanel;
     private JLabel labelChoosePath;
     private JButton buttonChoose;
-
     private final ColorListener cl;
 
     private final Set<Task> taskSet = new HashSet<>();
@@ -83,7 +85,6 @@ public class App extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
              if (radioButtonLight.isSelected()) {
-                radioButtonDark.setSelected(false);
                  try{
 
                      UIManager.setLookAndFeel(new FlatMacLightLaf());
@@ -109,6 +110,18 @@ public class App extends JFrame {
                  SwingUtilities.updateComponentTreeUI(page1Panel);
                  SwingUtilities.updateComponentTreeUI(pageSettings);
              }
+             else if(radioButtonContrast.isSelected()){
+                 try{
+                     UIManager.setLookAndFeel(new FlatDarkLaf());
+                 }
+                 catch (Exception ex){
+                     setDefaultLookAndFeelDecorated(true);
+                     ex.printStackTrace();
+                 }
+                 initPropertiesContrast();
+                 SwingUtilities.updateComponentTreeUI(page1Panel);
+                 SwingUtilities.updateComponentTreeUI(pageSettings);
+            }
         }
     }
     static class pathListener implements ActionListener{
@@ -169,6 +182,7 @@ public class App extends JFrame {
         public void itemStateChanged(ItemEvent e) {
             for (JButton button : buttons) {
                 selectButton(button);
+                //todo time wait
             }
         }
     }
@@ -195,8 +209,10 @@ public class App extends JFrame {
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButtonDark);
         buttonGroup.add(radioButtonLight);
+        buttonGroup.add(radioButtonContrast);
         radioButtonDark.addActionListener(rl);
         radioButtonLight.addActionListener(rl);
+        radioButtonContrast.addActionListener(rl);
         initPropertiesBlack();
         checkAllTask.addItemListener(il);
     }
@@ -253,9 +269,13 @@ public class App extends JFrame {
         radioButtonLight.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
         radioButtonDark.setForeground(new Color(1, 1, 1));
         radioButtonDark.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+        radioButtonContrast.setForeground(new Color(1, 1, 1));
+        radioButtonContrast.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
         labelChoosePath.setForeground(new Color(1, 1, 1));
         labelChoosePath.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
     }
+
+    //todo lightDesign
     private void initPropertiesLight(){
         page1Panel.setBackground(new Color(255, 255, 255));
         topPanel.setBackground(new Color(255, 255, 255));
@@ -269,6 +289,10 @@ public class App extends JFrame {
         textFieldCountVar.setForeground(new Color(0, 0, 0));
         textFieldCountVar.setBackground(new Color(255, 255, 255));
         textFieldCountVar.setFont(new Font("Comic sans mc" , Font.PLAIN, 16));
+    }
+    //todo contrastDesign
+    private void initPropertiesContrast() {
+
     }
 
     public static void main(String[] args) {
