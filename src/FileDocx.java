@@ -45,6 +45,13 @@ public class FileDocx {
         run.addTab();
         run.setFontFamily("Times New Roman");
     }
+    void addTextArray(int[] array){
+        //run = paragraph.createRun();
+        run.setFontSize(18);
+        run.setFontFamily("Times New Roman");
+        for(int i = 0; i < array.length; i++)
+            run.setText(array[i] + ", ");
+    }
     void addTextBoltCenter(String str){
         //paragraph = docx.createParagraph();
         paragraph.setAlignment(ParagraphAlignment.CENTER);
