@@ -5,6 +5,9 @@ public class WordWriter {
     private final int counterVariantos;
     private FileDocx fileDocx;
     private FileDocx fileOtvet;
+
+    //todo создать путь по умолчанию
+    //todo создать путь выбранный пользователем
     WordWriter(int[] taskArray, int counterVariantos){
         this.taskArray = taskArray;
         this.counterVariantos = counterVariantos;
@@ -29,6 +32,7 @@ public class WordWriter {
 
     void createToVariantos(){
         //create File result
+        //todo создавать файлы по выбраному пути
         fileOtvet = new FileDocx("ответы");
         fileOtvet.initTable(taskArray.length+1, counterVariantos);
         for(int variant = 1; variant <= counterVariantos; variant++){
@@ -53,6 +57,8 @@ public class WordWriter {
                 fileOtvet.addTaleItem(createTask1(var+1), 1, var);
                 break;
             case 2:
+                fileDocx.addTextBolt("2. ");
+                fileOtvet.addTaleItem(createTask2(var+1), 2, var);
                 break;
             case 3:
                 //other code
@@ -73,10 +79,49 @@ public class WordWriter {
         String[] s = {"19.5", "20.0", "19.0", "21.0"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
-        fileDocx.addText("   а) " + v.get(0) + "б) " + v.get(1) + "в) " + v.get(2) + "г) " + v.get(3));
-        for(String i : s){
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
             if(i.equals(Double.toString(answer)))
-                return i;
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask2(int var){
+        while (var > 4)
+            var -= 4;
+        int [] n = new int[9];
+        int answer = 0;
+        if(var == 1) {
+            n = new int[]{1, 4, 5, 5, 7, 9, 9, 9, 12};
+            answer = 9;
+        }
+        else if (var == 2) {
+            n = new int[]{1, 4, 5, 5, 7, 9, 12, 12, 12};
+            answer = 12;
+        }
+        else if (var == 3) {
+            n = new int[]{1, 4, 5, 5, 5, 7, 9, 9, 12};
+            answer = 5;
+        }
+        else if (var == 4) {
+            n = new int[]{1, 1, 1, 5, 7, 7, 9, 9, 12};
+            answer = 1;
+        }
+        fileDocx.addTextBreak("Мода вариационного ряда " + arrayToString(n) + "равна:");
+        String[] s = {"1", "5", "9", "12"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(Integer.toString(answer)))
+                return b[k];
+            k ++;
         }
         return "Error";
     }

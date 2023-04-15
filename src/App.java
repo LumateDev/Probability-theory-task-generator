@@ -132,6 +132,7 @@ public class App extends JFrame {
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = rootChoose.getSelectedFile();
                 // Получаем абсолютный путь до файла
+                //todo передать путь для создания ворд файлов
                 System.out.println(selectedFile.getAbsolutePath());
             }
         }
@@ -322,7 +323,6 @@ public class App extends JFrame {
         radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
         labelChoosePath.setForeground(new Color(133,133,133));
         labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
-
 
     }
 
