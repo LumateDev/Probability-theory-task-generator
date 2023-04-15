@@ -16,7 +16,7 @@ public class FileDocx {
     FileDocx(String nameFile){
         this.nameFile = nameFile;
         docx = new XWPFDocument();
-
+        paragraph = docx.createParagraph();
     }
     //other code
     void addHeader(){
@@ -28,7 +28,7 @@ public class FileDocx {
         run.setFontFamily("Times New Roman");
     }
     void addTextBreak(String str){
-        paragraph = docx.createParagraph();
+        //paragraph = docx.createParagraph();
         run = paragraph.createRun();
         run.setFontSize(18);
         run.setText(str);
@@ -54,13 +54,12 @@ public class FileDocx {
         run.setFontFamily("Times New Roman");
     }
     void addTextBolt(String str){
-        paragraph = docx.createParagraph();
+        //paragraph = docx.createParagraph();
         run = paragraph.createRun();
         run.setFontSize(18);
         run.setBold(true);
         run.setText(str);
         run.setFontFamily("Times New Roman");
-        //run.addBreak();
     }
     //Tables
     void setTableAlign(XWPFTable table,ParagraphAlignment align) {
@@ -86,8 +85,6 @@ public class FileDocx {
         try {
             FileOutputStream out = new FileOutputStream(nameFile+".docx");
             docx.write(out);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

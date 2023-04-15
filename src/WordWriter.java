@@ -1,8 +1,8 @@
 import java.util.Random;
 
 public class WordWriter {
-    private int[] taskArray;
-    private int counterVariantos;
+    private final int[] taskArray;
+    private final int counterVariantos;
     private FileDocx fileDocx;
     WordWriter(int[] taskArray, int counterVariantos){
         this.taskArray = taskArray;
@@ -27,7 +27,7 @@ public class WordWriter {
             fileDocx.addTextBoltCenter("Тест 2. Вариант " + variant);
             fileDocx.addHeader();
             for(int task = 0; task < taskArray.length; task++){
-                fileDocx.addTextBolt("Задание " + taskArray[task]);
+                fileDocx.addTextBolt(taskArray[task] +". ");
                 createTask(taskArray[task]);
             }
             fileDocx.printToFile();
