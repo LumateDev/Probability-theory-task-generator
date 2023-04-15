@@ -16,19 +16,22 @@ public class FileDocx {
     FileDocx(String nameFile){
         this.nameFile = nameFile;
         docx = new XWPFDocument();
-        paragraph = docx.createParagraph();
     }
+
     //other code
-    void addHeader(){
+    void newParagraph(){
         paragraph = docx.createParagraph();
         run = paragraph.createRun();
+    }
+    void addHeader(String str){
+        addTextBoltCenter(str);
+        newParagraph();
         run.setFontSize(18);
         run.setText("Фамилия______________________Группа________");
         run.addBreak();
         run.setFontFamily("Times New Roman");
     }
     void addTextBreak(String str){
-        //paragraph = docx.createParagraph();
         run = paragraph.createRun();
         run.setFontSize(18);
         run.setText(str);
@@ -36,7 +39,6 @@ public class FileDocx {
         run.setFontFamily("Times New Roman");
     }
     void addText(String str){
-        paragraph = docx.createParagraph();
         run = paragraph.createRun();
         run.setFontSize(18);
         run.setText(str);
@@ -44,9 +46,9 @@ public class FileDocx {
         run.setFontFamily("Times New Roman");
     }
     void addTextBoltCenter(String str){
-        paragraph = docx.createParagraph();
+        //paragraph = docx.createParagraph();
         paragraph.setAlignment(ParagraphAlignment.CENTER);
-        run = paragraph.createRun();
+        //run = paragraph.createRun();
         run.setFontSize(18);
         run.setBold(true);
         run.setText(str);
@@ -54,12 +56,11 @@ public class FileDocx {
         run.setFontFamily("Times New Roman");
     }
     void addTextBolt(String str){
-        //paragraph = docx.createParagraph();
-        run = paragraph.createRun();
         run.setFontSize(18);
         run.setBold(true);
         run.setText(str);
         run.setFontFamily("Times New Roman");
+        run.addTab();
     }
     //Tables
     void setTableAlign(XWPFTable table,ParagraphAlignment align) {

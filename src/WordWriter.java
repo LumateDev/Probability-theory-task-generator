@@ -24,10 +24,10 @@ public class WordWriter {
         for(int variant = 1; variant <= counterVariantos; variant++){
             //code create File variant
             fileDocx = new FileDocx("Вариант " + String.valueOf(variant));
-            fileDocx.addTextBoltCenter("Тест 2. Вариант " + variant);
-            fileDocx.addHeader();
+            fileDocx.newParagraph();
+            fileDocx.addHeader("Тест 2. Вариант " + variant);
             for(int task = 0; task < taskArray.length; task++){
-                fileDocx.addTextBolt(taskArray[task] +". ");
+                fileDocx.newParagraph();
                 createTask(taskArray[task]);
             }
             fileDocx.printToFile();
@@ -38,6 +38,7 @@ public class WordWriter {
         switch (t){
             case 1:
                 //other code
+                fileDocx.addTextBolt("1. ");
                 fileDocx.addTextBreak("Два стрелка стреляют по мишени. Вероятность попадания в мишень при одном выстреле для первого стрелка равна " +
                         getRandomNumber(0.1, 1) +
                         ", а для второго —" +
@@ -46,6 +47,7 @@ public class WordWriter {
                 );
                 break;
             case 2:
+                fileDocx.addTextBolt("2. ");
                 fileDocx.addTextBreak("В ящике " +
                         getRandomNumber(5, 15) +
                         " деталей, среди которых шесть окрашенных. Сборщик наудачу извлекает четыре детали. Найти вероятность того, что все извлеченные детали окажутся окрашенными."
