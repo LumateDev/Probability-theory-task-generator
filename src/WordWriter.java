@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.*;
 
 public class WordWriter {
@@ -6,12 +7,18 @@ public class WordWriter {
     private FileDocx fileDocx;
     private FileDocx fileOtvet;
 
+    private String filesPath;
+
     //todo создать путь по умолчанию
     //todo создать путь выбранный пользователем
-    WordWriter(int[] taskArray, int counterVariantos){
+    WordWriter(int[] taskArray, int counterVariantos,String filesPath){
         this.taskArray = taskArray;
         this.counterVariantos = counterVariantos;
-
+        this.filesPath = filesPath;
+        File theDir = new File(filesPath);
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
         createToVariantos();
     }
     String arrayToString(int[] array){
@@ -31,7 +38,7 @@ public class WordWriter {
     }
 
     void createToVariantos(){
-        //create File result
+
         //todo создавать файлы по выбраному пути
         fileOtvet = new FileDocx("ответы");
         fileOtvet.initTable(taskArray.length+1, counterVariantos);

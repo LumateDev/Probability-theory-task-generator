@@ -57,6 +57,9 @@ public class App extends JFrame {
     private JLabel labelChoosePath;
     private JButton buttonChoose;
     private final ColorListener cl;
+    private WordWriter wordWriter;
+    private String defaultFilePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\Варианты";
+    private String userFilePath;
 
     private final Set<Task> taskSet = new HashSet<>();
 
@@ -123,7 +126,7 @@ public class App extends JFrame {
             }
         }
     }
-    static class pathListener implements ActionListener{
+     class pathListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -131,9 +134,8 @@ public class App extends JFrame {
             int returnValue = rootChoose.showSaveDialog(null);
             if (returnValue == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = rootChoose.getSelectedFile();
-                // Получаем абсолютный путь до файла
-                //todo передать путь для создания ворд файлов
-                System.out.println(selectedFile.getAbsolutePath());
+                userFilePath = selectedFile.getAbsolutePath();
+                System.out.println(userFilePath);
             }
         }
     }
@@ -166,7 +168,11 @@ public class App extends JFrame {
                             .sorted(Task.numberComparator)
                             .mapToInt(Task::getNumberTask)
                             .toArray();
-                    WordWriter wordWriter = new WordWriter(taskArray, countVar);
+                    if(userFilePath == null) {
+                        wordWriter = new WordWriter(taskArray, countVar,defaultFilePath);
+                    }
+                    else
+                        wordWriter = new WordWriter(taskArray,countVar,userFilePath);
                 }
             }
             catch (Exception ex){
