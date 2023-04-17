@@ -38,14 +38,14 @@ public class WordWriter {
     }
 
     void createToVariantos(){
-
         //todo создавать файлы по выбраному пути
-        fileOtvet = new FileDocx("ответы");
-        fileOtvet.initTable(taskArray.length+1, counterVariantos);
+        fileOtvet = new FileDocx(filesPath + "\\ответы");
+        fileOtvet.initTable(taskArray.length+1, counterVariantos + 1);
+        fileOtvet.initRow(counterVariantos);
+        fileOtvet.initCol(taskArray.length);
         for(int variant = 1; variant <= counterVariantos; variant++){
             //code create File variant
-            fileDocx = new FileDocx("Вариант " + String.valueOf(variant));
-            fileOtvet.addTaleItem("Вар-" + variant,0, variant-1);
+            fileDocx = new FileDocx(filesPath + "\\Вариант " + String.valueOf(variant));
             fileDocx.newParagraph();
             fileDocx.addHeader("Тест 2. Вариант " + variant);
             for(int task = 0; task < taskArray.length; task++){
@@ -61,11 +61,11 @@ public class WordWriter {
         switch (t){
             case 1:
                 fileDocx.addTextBolt("1. ");
-                fileOtvet.addTaleItem(createTask1(var+1), 1, var);
+                fileOtvet.addTaleItem(createTask1(var+1), 1, var+1);
                 break;
             case 2:
                 fileDocx.addTextBolt("2. ");
-                fileOtvet.addTaleItem(createTask2(var+1), 2, var);
+                fileOtvet.addTaleItem(createTask2(var+1), 2, var+1);
                 break;
             case 3:
                 //other code

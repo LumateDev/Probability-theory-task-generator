@@ -88,6 +88,17 @@ public class FileDocx {
         run.setText(str);
         run.setFontFamily("Times New Roman");
     }
+    void initCol(int numCol){
+        for(int i = 1; i <= numCol; i++){
+            addTaleItem(i+"", i, 0);
+        }
+    }
+    void initRow(int numRow){
+        addTaleItem("№", 0, 0);
+        for(int i = 1; i <= numRow; i++){
+            addTaleItem("Вар-"+i, 0, i);
+        }
+    }
 
     void printToFile(){
         try {
