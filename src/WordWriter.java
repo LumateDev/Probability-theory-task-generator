@@ -6,11 +6,8 @@ public class WordWriter {
     private final int counterVariantos;
     private FileDocx fileDocx;
     private FileDocx fileOtvet;
-
     private String filesPath;
 
-    //todo создать путь по умолчанию
-    //todo создать путь выбранный пользователем
     WordWriter(int[] taskArray, int counterVariantos,String filesPath){
         this.taskArray = taskArray;
         this.counterVariantos = counterVariantos;
@@ -28,7 +25,6 @@ public class WordWriter {
         str+= array[array.length-1] + " ";
         return str;
     }
-
     int getRandomNumber(int min, int max){
         return new Random().nextInt(max - min) + min;
     }
@@ -38,7 +34,6 @@ public class WordWriter {
     }
 
     void createToVariantos(){
-        //todo создавать файлы по выбраному пути
         fileOtvet = new FileDocx(filesPath + "\\ответы");
         fileOtvet.initTable(taskArray.length+1, counterVariantos + 1);
         fileOtvet.initRow(counterVariantos);
@@ -68,7 +63,6 @@ public class WordWriter {
                 fileOtvet.addTaleItem(createTask2(var+1), 2, var+1);
                 break;
             case 3:
-                //other code
                 break;
         }
     }

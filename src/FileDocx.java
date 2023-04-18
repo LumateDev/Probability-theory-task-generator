@@ -2,8 +2,6 @@ import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
-
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -17,8 +15,6 @@ public class FileDocx {
         this.nameFile = nameFile;
         docx = new XWPFDocument();
     }
-
-    //other code
     void newParagraph(){
         paragraph = docx.createParagraph();
         run = paragraph.createRun();
@@ -46,16 +42,12 @@ public class FileDocx {
         run.setFontFamily("Times New Roman");
     }
     void addTextArray(int[] array){
-        //run = paragraph.createRun();
         run.setFontSize(18);
         run.setFontFamily("Times New Roman");
-        for(int i = 0; i < array.length; i++)
-            run.setText(array[i] + ", ");
+        for (int j : array) run.setText(j + ", ");
     }
     void addTextBoltCenter(String str){
-        //paragraph = docx.createParagraph();
         paragraph.setAlignment(ParagraphAlignment.CENTER);
-        //run = paragraph.createRun();
         run.setFontSize(18);
         run.setBold(true);
         run.setText(str);
@@ -69,7 +61,6 @@ public class FileDocx {
         run.setFontFamily("Times New Roman");
         run.addTab();
     }
-    //Tables
     void setTableAlign(XWPFTable table,ParagraphAlignment align) {
         CTTblPr tblPr = table.getCTTbl().getTblPr();
         CTJc jc = (tblPr.isSetJc() ? tblPr.getJc() : tblPr.addNewJc());
@@ -99,7 +90,6 @@ public class FileDocx {
             addTaleItem("Вар-"+i, 0, i);
         }
     }
-
     void printToFile(){
         try {
             FileOutputStream out = new FileOutputStream(nameFile+".docx");

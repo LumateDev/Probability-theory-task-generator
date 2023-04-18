@@ -11,6 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -57,8 +58,7 @@ public class App extends JFrame {
     private JLabel labelChoosePath;
     private JButton buttonChoose;
     private final ColorListener cl;
-    private WordWriter wordWriter;
-    private String defaultFilePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\Варианты";
+    private final String defaultFilePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\Варианты";
     private String userFilePath;
 
     private final Set<Task> taskSet = new HashSet<>();
@@ -146,7 +146,8 @@ public class App extends JFrame {
 
             try{
                 int countVar = Integer.parseInt(textFieldCountVar.getText());
-                String answer = "Создание успешно завершено! Ваши " + countVar + " вариантов находятся в папке 'Варианты' на рабочем столе."+
+                String answer;
+                answer = "Создание успешно завершено! Ваши " + countVar + " вариантов находятся в папке " + Objects.requireNonNullElse(userFilePath, "Варианты на рабочем столе ") +
                         "\nНабор номеров в варианте: ";
 
                 String remark = "\n\nТак же при желании вы можете сменить путь сохранения сгенерированных вариантов во вкладке 'Настройки'.";
@@ -168,11 +169,8 @@ public class App extends JFrame {
                             .sorted(Task.numberComparator)
                             .mapToInt(Task::getNumberTask)
                             .toArray();
-                    if(userFilePath == null) {
-                        wordWriter = new WordWriter(taskArray, countVar,defaultFilePath);
-                    }
-                    else
-                        wordWriter = new WordWriter(taskArray,countVar,userFilePath);
+
+                   WordWriter wordWriter = new WordWriter(taskArray, countVar, Objects.requireNonNullElse(userFilePath, defaultFilePath));
                 }
             }
             catch (Exception ex){
@@ -333,7 +331,7 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) {
-
+         
         try {
 
             UIManager.setLookAndFeel(new FlatMacDarkLaf());
