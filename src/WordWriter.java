@@ -138,20 +138,21 @@ public class WordWriter {
             var -= 4;
         int answer = 0;
         String[] rowTable = new String[]{ "Xi-Xi+1", "0-2", "2-4", "4-6", "6-8", "8-10" };
+        String questionStr = "Из генеральной совокупности извлечена выборка объёма n = ";
         if(var == 1){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 80);
+            fileDocx.addTextBreak(questionStr + 80);
             answer = 28;
         }
         else if(var == 2){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 62);
+            fileDocx.addTextBreak(questionStr + 62);
             answer = 10;
         }
         else if(var == 3){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 68);
+            fileDocx.addTextBreak(questionStr + 68);
             answer = 16;
         }
         else if(var == 4){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 72);
+            fileDocx.addTextBreak(questionStr + 72);
             answer = 20;
         }
         //запись таблицы
@@ -182,20 +183,21 @@ public class WordWriter {
             var -= 4;
         double answer = 0.0;
         String[] rowTable = new String[]{ "Xi", "3", "4", "5", "6", "7" };
+        String questionStr = "Из генеральной совокупности извлечена выборка объёма n = ";
         if(var == 1){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 100);
+            fileDocx.addTextBreak(questionStr + 100);
             answer = 0.18;
         }
         else if(var == 2){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 132);
+            fileDocx.addTextBreak(questionStr + 132);
             answer = 0.5;
         }
         else if(var == 3){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 107);
+            fileDocx.addTextBreak(questionStr + 107);
             answer = 0.25;
         }
         else if(var == 4){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 95);
+            fileDocx.addTextBreak(questionStr + 95);
             answer = 0.13;
         }
         //запись таблицы

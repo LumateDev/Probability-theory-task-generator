@@ -3,6 +3,7 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class App extends JFrame {
+    private static Runnable selectButton;
     private JPanel mainPanel;
     private JPanel buttonPanel;
     private JButton buttonTask1;
@@ -147,7 +149,8 @@ public class App extends JFrame {
             try{
                 int countVar = Integer.parseInt(textFieldCountVar.getText());
                 String answer;
-                answer = "Создание успешно завершено! Ваши " + countVar + " вариантов находятся в папке " + Objects.requireNonNullElse(userFilePath, "Варианты на рабочем столе ") +
+                answer = "Создание успешно завершено! Ваши " + countVar + " вариантов находятся в папке " +
+                        Objects.requireNonNullElse(userFilePath, "'Варианты' на рабочем столе ") +
                         "\nНабор номеров в варианте: ";
 
                 String remark = "\n\nТак же при желании вы можете сменить путь сохранения сгенерированных вариантов во вкладке 'Настройки'.";
@@ -186,7 +189,6 @@ public class App extends JFrame {
         public void itemStateChanged(ItemEvent e) {
             for (JButton button : buttons) {
                 selectButton(button);
-                //todo time wait
             }
         }
     }
@@ -247,25 +249,26 @@ public class App extends JFrame {
 
         tabPane1.setBackground(new Color(26, 26, 26));
         page1Panel.setBackground(new Color(194, 194, 194));
-        topPanel.setBackground(new Color(194, 194, 194));
+        topPanel.setBackground(new Color(184, 184, 184));
         buttonPanel.setBackground(new Color(194, 194, 194));
-        lowPanel.setBackground(new Color(194, 194, 194));
-        mainPanel.setBackground(new Color(194, 194, 194));
+        lowPanel.setBackground(new Color(184, 184, 184));
+        mainPanel.setBackground(new Color(81, 81, 81));
         pageSettings.setBackground(new Color(194, 194, 194));
-        settingsTopPanel.setBackground(new Color(194, 194, 194));
+        settingsTopPanel.setBackground(new Color(216, 216, 216));
         settingsTreePanel.setBackground(new Color(194, 194, 194));
         labelInputCountVar.setFont(new Font("Verdana", Font.PLAIN, 28));
         labelInputCountVar.setForeground(new Color(1,1,1));
         labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
         labelChoseTask.setFont(new Font("Verdana", Font.PLAIN, 24));
         labelChoseTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
-        labelChoseTask.setForeground(new Color(1,1,1));
-        textFieldCountVar.setForeground(new Color(68, 68, 68));
-        textFieldCountVar.setBackground(new Color(222, 216, 216));
+        labelChoseTask.setForeground(new Color(24,24,24));
+        textFieldCountVar.setForeground(new Color(44, 44, 44));
+        textFieldCountVar.setBackground(new Color(160, 160, 160));
         textFieldCountVar.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        textFieldCountVar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         checkAllTask.setFont(new Font("Verdana" , Font.PLAIN , 24));
-        checkAllTask.setForeground(new Color(1,1,1));
+        checkAllTask.setForeground(new Color(44,44,44));
         buttonCreateVar.setFont(new Font("Verdana" , Font.PLAIN , 20));
         labelChooseTheme.setForeground(new Color(1, 1, 1));
         labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 16));
@@ -275,44 +278,64 @@ public class App extends JFrame {
         radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 16));
         radioButtonContrast.setForeground(new Color(1, 1, 1));
         radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
-        labelChoosePath.setForeground(new Color(1, 1, 1));
+        labelChoosePath.setForeground(new Color(44, 44, 44));
         labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
     }
 
-    //todo lightDesign
     private void initPropertiesLight(){
-        page1Panel.setBackground(new Color(255, 255, 255));
-        topPanel.setBackground(new Color(255, 255, 255));
+        page1Panel.setBackground(new Color(245, 245, 245));
         tabPane1.setBackground(new Color(96, 96, 96));
-        buttonPanel.setBackground(new Color(255, 255, 255));
-        lowPanel.setBackground(new Color(255, 255, 255));
-        mainPanel.setBackground(new Color(255, 255, 255));
-        pageSettings.setBackground(new Color(255, 255, 255));
-        settingsTopPanel.setBackground(new Color(255, 255, 255));
-        settingsTreePanel.setBackground(new Color(255, 255, 255));
-        textFieldCountVar.setForeground(new Color(0, 0, 0));
-        textFieldCountVar.setBackground(new Color(255, 255, 255));
+        topPanel.setBackground(new Color(235, 235, 235));
+        buttonPanel.setBackground(new Color(245, 245, 245));
+        lowPanel.setBackground(new Color(235, 235, 235));
+        mainPanel.setBackground(new Color(133, 133, 133));
+        pageSettings.setBackground(new Color(230, 230, 230));
+        settingsTopPanel.setBackground(new Color(245, 245, 245));
+        settingsTreePanel.setBackground(new Color(230, 230, 230));
+        labelInputCountVar.setFont(new Font("Verdana", Font.PLAIN, 28));
+        labelInputCountVar.setForeground(new Color(30,30,30));
+        labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
+        labelChoseTask.setFont(new Font("Verdana", Font.PLAIN, 24));
+        labelChoseTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
+        labelChoseTask.setForeground(new Color(50,50,50));
+        textFieldCountVar.setForeground(new Color(24, 24, 24));
+        textFieldCountVar.setBackground(new Color(250, 250, 250));
         textFieldCountVar.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        textFieldCountVar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
+        checkAllTask.setFont(new Font("Verdana" , Font.PLAIN , 24));
+        checkAllTask.setForeground(new Color(50,50,50));
+        labelChooseTheme.setForeground(new Color(24, 24, 24));
+        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonLight.setForeground(new Color(24, 24, 24));
+        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonDark.setForeground(new Color(24, 24, 24));
+        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonContrast.setForeground(new Color(24, 24, 24));
+        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChoosePath.setForeground(new Color(44,44,44));
+        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
     }
-    //todo contrastDesign
+
     private void initPropertiesContrast() {
-        tabPane1.setBackground(new Color(30, 30, 30));
+        tabPane1.setBackground(new Color(25, 25, 25));
         page1Panel.setBackground(new Color(30, 30, 30));
-        topPanel.setBackground(new Color(50, 50, 50));
+        topPanel.setBackground(new Color(35, 35, 35));
         buttonPanel.setBackground(new Color(30, 30, 30));
-        lowPanel.setBackground(new Color(50, 50, 50));
-        mainPanel.setBackground(new Color(70, 70, 70));
+        lowPanel.setBackground(new Color(35, 35, 35));
+        mainPanel.setBackground(new Color(50, 50, 50));
         pageSettings.setBackground(new Color(30, 30, 30));
-        settingsTopPanel.setBackground(new Color(50, 50, 50));
-        settingsTreePanel.setBackground(new Color(40, 40, 40));
+        settingsTopPanel.setBackground(new Color(40, 40, 40));
+        settingsTreePanel.setBackground(new Color(30, 30, 30));
         labelInputCountVar.setFont(new Font("Verdana", Font.PLAIN, 28));
         labelInputCountVar.setForeground(new Color(170,170,170));
         labelInputCountVar.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
         labelChoseTask.setFont(new Font("Verdana", Font.PLAIN, 24));
         labelChoseTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
         labelChoseTask.setForeground(new Color(170,170,170));
-        textFieldCountVar.setForeground(new Color(217, 220, 225));
-        textFieldCountVar.setBackground(new Color(88, 88, 88));
+        textFieldCountVar.setForeground(new Color(180, 180, 180));
+        textFieldCountVar.setBackground(new Color(30, 30, 30));
+        textFieldCountVar.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         textFieldCountVar.setFont(new Font("Verdana" , Font.PLAIN, 16));
         checkAllTask.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         checkAllTask.setFont(new Font("Verdana" , Font.PLAIN , 24));
@@ -331,9 +354,8 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) {
-         
-        try {
 
+        try {
             UIManager.setLookAndFeel(new FlatMacDarkLaf());
         } catch (Exception ex) {
             setDefaultLookAndFeelDecorated(true);
