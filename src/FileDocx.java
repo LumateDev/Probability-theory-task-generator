@@ -70,6 +70,7 @@ public class FileDocx {
     void initTable(int row, int col){
         table = docx.createTable(row, col);
         setTableAlign(table, ParagraphAlignment.CENTER);
+        table.setCellMargins(5, 100, 5, 100);
     }
     void addTaleItem(String str, int row, int col){
         paragraph = table.getRow(row).getCell(col).getParagraphs().get(0);
@@ -78,6 +79,11 @@ public class FileDocx {
         run.setFontSize(18);
         run.setText(str);
         run.setFontFamily("Times New Roman");
+    }
+    void addTableArrayRow(String[] s, int row){
+        for(int i = 0; i < s.length; i++){
+            addTaleItem(s[i], row, i);
+        }
     }
     void initCol(int numCol){
         for(int i = 1; i <= numCol; i++){

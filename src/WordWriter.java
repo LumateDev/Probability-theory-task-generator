@@ -63,6 +63,12 @@ public class WordWriter {
                 fileOtvet.addTaleItem(createTask2(var+1), 2, var+1);
                 break;
             case 3:
+                fileDocx.addTextBolt("3. ");
+                fileOtvet.addTaleItem(createTask3(var+1), 3, var+1);
+                break;
+            case 4:
+                fileDocx.addTextBolt("4. ");
+                fileOtvet.addTaleItem(createTask4(var+1), 4, var+1);
                 break;
         }
     }
@@ -121,6 +127,94 @@ public class WordWriter {
         int k = 0;
         for(String i : v){
             if(i.equals(Integer.toString(answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask3(int var){
+        while (var > 4)
+            var -= 4;
+        int answer = 0;
+        String[] rowTable = new String[]{ "Xi-Xi+1", "0-2", "2-4", "4-6", "6-8", "8-10" };
+        if(var == 1){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 80);
+            answer = 28;
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 62);
+            answer = 10;
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 68);
+            answer = 16;
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 72);
+            answer = 20;
+        }
+        //запись таблицы
+        fileDocx.initTable(2, 6);
+        fileDocx.addTableArrayRow(rowTable, 0);
+        rowTable = new String[]{"Ni", "6", "14", "n3", "20", "12"};
+        fileDocx.addTableArrayRow(rowTable, 1);
+
+        fileDocx.newParagraph();
+        fileDocx.addTextBreak("Тогда значение n3 равно:");
+
+        String[] s = {"20", "16", "10", "28"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(Integer.toString(answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask4(int var){
+        while (var > 4)
+            var -= 4;
+        double answer = 0.0;
+        String[] rowTable = new String[]{ "Xi", "3", "4", "5", "6", "7" };
+        if(var == 1){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 100);
+            answer = 0.18;
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 132);
+            answer = 0.5;
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 107);
+            answer = 0.25;
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = " + 95);
+            answer = 0.13;
+        }
+        //запись таблицы
+        fileDocx.initTable(2, 6);
+        fileDocx.addTableArrayRow(rowTable, 0);
+        rowTable = new String[]{"Ni", "15", "35", "n3", "25", "7"};
+        fileDocx.addTableArrayRow(rowTable, 1);
+
+        fileDocx.newParagraph();
+        fileDocx.addTextBreak("Тогда относительная частота варианты Xi = 5 равна:");
+
+        String[] s = {"0.5", "0.25", "0.18", "0.13"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(Double.toString(answer)))
                 return b[k];
             k ++;
         }
