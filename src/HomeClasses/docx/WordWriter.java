@@ -9,7 +9,7 @@ public class WordWriter {
     private FileDocx fileDocx;
     private FileDocx fileAnswers;
     private final String filesPath;
-
+    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃"};
     public WordWriter(int[] taskArray, int countVariants, String filesPath){
         this.taskArray = taskArray;
         this.countVariants = countVariants;
@@ -39,7 +39,7 @@ public class WordWriter {
         fileAnswers = new FileDocx(filesPath + "\\ответы");
         fileAnswers.initTable(taskArray.length+1, countVariants + 1);
         fileAnswers.initRow(countVariants);
-        fileAnswers.initCol(taskArray.length);
+        fileAnswers.initCol(taskArray);
         for(int variant = 1; variant <= countVariants; variant++){
             //code create File variant
             fileDocx = new FileDocx(filesPath + "\\Вариант " + variant);
@@ -47,30 +47,30 @@ public class WordWriter {
             fileDocx.addHeader("Тест 2. Вариант " + variant);
             for(int task = 0; task < taskArray.length; task++){
                 fileDocx.newParagraph();
-                createTask(taskArray[task], variant-1);
+                createTask(taskArray[task], variant, task+1);
             }
             fileDocx.printToFile();
         }
         fileAnswers.printToFile();
     }
 
-    void createTask(int t, int var){
+    void createTask(int t, int var, int countTask) {
         switch (t){
             case 1:
                 fileDocx.addTextBolt("1. ");
-                fileAnswers.addTaleItem(createTask1(var+1), 1, var+1);
+                fileAnswers.addTaleItem(createTask1(var), countTask, var);
                 break;
             case 2:
                 fileDocx.addTextBolt("2. ");
-                fileAnswers.addTaleItem(createTask2(var+1), 2, var+1);
+                fileAnswers.addTaleItem(createTask2(var), countTask, var);
                 break;
             case 3:
                 fileDocx.addTextBolt("3. ");
-                fileAnswers.addTaleItem(createTask3(var+1), 3, var+1);
+                fileAnswers.addTaleItem(createTask3(var), countTask, var);
                 break;
             case 4:
                 fileDocx.addTextBolt("4. ");
-                fileAnswers.addTaleItem(createTask4(var+1), 4, var+1);
+                fileAnswers.addTaleItem(createTask4(var), countTask, var);
                 break;
         }
     }
@@ -139,7 +139,7 @@ public class WordWriter {
         while (var > 4)
             var -= 4;
         int answer = 0;
-        String[] rowTable = new String[]{ "Xi-Xi+1", "0-2", "2-4", "4-6", "6-8", "8-10" };
+        String[] rowTable = new String[]{ specialSymbols[2], "0-2", "2-4", "4-6", "6-8", "8-10" };
         String questionStr = "Из генеральной совокупности извлечена выборка объёма n = ";
         if(var == 1){
             fileDocx.addTextBreak(questionStr + 80);
@@ -160,11 +160,11 @@ public class WordWriter {
         //запись таблицы
         fileDocx.initTable(2, 6);
         fileDocx.addTableArrayRow(rowTable, 0);
-        rowTable = new String[]{"Ni", "6", "14", "n3", "20", "12"};
+        rowTable = new String[]{specialSymbols[3], "6", "14", specialSymbols[4], "20", "12"};
         fileDocx.addTableArrayRow(rowTable, 1);
 
         fileDocx.newParagraph();
-        fileDocx.addTextBreak("Тогда значение n3 равно:");
+        fileDocx.addTextBreak("Тогда значение " + specialSymbols[4] + " равно:");
 
         String[] s = {"20", "16", "10", "28"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
@@ -184,7 +184,7 @@ public class WordWriter {
         while (var > 4)
             var -= 4;
         double answer = 0.0;
-        String[] rowTable = new String[]{ "Xi", "3", "4", "5", "6", "7" };
+        String[] rowTable = new String[]{ specialSymbols[0], "3", "4", "5", "6", "7" };
         String questionStr = "Из генеральной совокупности извлечена выборка объёма n = ";
         if(var == 1){
             fileDocx.addTextBreak(questionStr + 100);
@@ -205,11 +205,11 @@ public class WordWriter {
         //запись таблицы
         fileDocx.initTable(2, 6);
         fileDocx.addTableArrayRow(rowTable, 0);
-        rowTable = new String[]{"Ni", "15", "35", "n3", "25", "7"};
+        rowTable = new String[]{specialSymbols[3], "15", "35", specialSymbols[4], "25", "7"};
         fileDocx.addTableArrayRow(rowTable, 1);
 
         fileDocx.newParagraph();
-        fileDocx.addTextBreak("Тогда относительная частота варианты Xi = 5 равна:");
+        fileDocx.addTextBreak("Тогда относительная частота варианты " + specialSymbols[0] + " = 5 равна:");
 
         String[] s = {"0.5", "0.25", "0.18", "0.13"};
         List<String> v = new ArrayList<>(Arrays.asList(s));

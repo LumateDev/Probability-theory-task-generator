@@ -1,11 +1,13 @@
 package HomeClasses.docx;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.STJc;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+import java.io.*;
 
 public class FileDocx {
     private final String nameFile;
@@ -87,15 +89,33 @@ public class FileDocx {
             addTaleItem(s[i], row, i);
         }
     }
-    void initCol(int numCol){
-        for(int i = 1; i <= numCol; i++){
-            addTaleItem(i+"", i, 0);
+    void initCol(int[] taskArray){
+        for(int i = 0; i < taskArray.length; i++) {
+            addTaleItem(String.valueOf(taskArray[i]), i + 1, 0);
         }
     }
     void initRow(int numRow){
         addTaleItem("№", 0, 0);
         for(int i = 1; i <= numRow; i++){
             addTaleItem("Вар-"+i, 0, i);
+        }
+    }
+    void addPicture(String picture, int width, int height){
+        File image = new File(picture);
+        FileInputStream imageData = null;
+        try {
+            imageData = new FileInputStream(image);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        int imageType = XWPFDocument.PICTURE_TYPE_JPEG;
+        String imageFileName = image.getName();
+        try {
+            run.addPicture(imageData, imageType, imageFileName,
+                    Units.toEMU(width),
+                    Units.toEMU(height));
+        } catch (InvalidFormatException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
     void printToFile(){
