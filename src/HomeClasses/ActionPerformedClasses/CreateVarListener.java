@@ -12,15 +12,18 @@ import java.util.stream.Collectors;
 public class CreateVarListener implements ActionListener {
     private final String defaultFilePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\Варианты";
     private final Set<Task> taskSet;
-    private final String userFilePath;
+    private String userFilePath;
     private final JPanel mainPanel;
     private final JTextField textFieldCountVar;
 
-    public CreateVarListener(ColorListener colorListener, PathListener pathListener, JPanel mainPanel, JTextField textFieldCountVar){
+    public CreateVarListener(ColorListener colorListener, JPanel mainPanel, JTextField textFieldCountVar){
         this.taskSet = colorListener.getTaskSet();
-        this.userFilePath = pathListener.getUserFilePath();
         this.mainPanel = mainPanel;
         this.textFieldCountVar = textFieldCountVar;
+    }
+
+    public void setUserFilePath(String userFilePath) {
+        this.userFilePath = userFilePath;
     }
 
     @Override

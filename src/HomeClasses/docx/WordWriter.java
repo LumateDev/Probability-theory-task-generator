@@ -235,22 +235,22 @@ public class WordWriter {
         double answer = 0.0;
         String questionStr = "Из генеральной совокупности извлечена выборка объема n = ";
         if(var == 1){
-            fileDocx.addText(questionStr + 160);
+            fileDocx.addText(questionStr + 160 + ",");
             answer = 0.25;
         }
         else if(var == 2){
-            fileDocx.addText(questionStr + 40);
+            fileDocx.addText(questionStr + 40 + ",");
             answer = 1.0;
         }
         else if(var == 3){
-            fileDocx.addText(questionStr + 66.66);
+            fileDocx.addText(questionStr + 66 + ",");
             answer = 0.6;
         }
         else if(var == 4){
-            fileDocx.addText(questionStr + 666.66);
+            fileDocx.addText(questionStr + 666 + ",");
             answer = 0.06;
         }
-        fileDocx.addTextBreak(", полигон частот которой имеет вид: ");
+        fileDocx.addTextBreak("полигон частот которой имеет вид: ");
         fileDocx.addPicture("src\\res\\image\\график задание 5.jpg", 386, 244);
         fileDocx.addTextBreak("Тогда относительная частота варианты " + specialSymbols[5] + " = 6 в выборке равна:");
 

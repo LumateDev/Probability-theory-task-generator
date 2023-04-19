@@ -10,9 +10,11 @@ public class PathListener implements ActionListener {
     public String userFilePath;
     private final JLabel labelChoosePath;
     private final JButton buttonChoose;
-    public PathListener (JLabel labelChoosePath, JButton buttonChoose) {
+    private final CreateVarListener createVarListener;
+    public PathListener (JLabel labelChoosePath, JButton buttonChoose, CreateVarListener createVarListener) {
         this.labelChoosePath = labelChoosePath;
         this.buttonChoose = buttonChoose;
+        this.createVarListener = createVarListener;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -23,10 +25,7 @@ public class PathListener implements ActionListener {
             userFilePath = selectedFile.getAbsolutePath();
             labelChoosePath.setText(userFilePath);
             buttonChoose.setText("Изменить");
+            createVarListener.setUserFilePath(userFilePath);
         }
-    }
-
-    public String getUserFilePath() {
-        return userFilePath;
     }
 }

@@ -69,15 +69,15 @@ public class App extends JFrame {
                         buttonTask8, buttonTask9, buttonTask10, buttonTask11, buttonTask12, buttonTask13, buttonTask14,
                         buttonTask15, buttonTask16, buttonTask17, buttonTask18, buttonTask19, buttonTask20, buttonTask21
                 };
-        pathListener = new PathListener(labelChoosePath,buttonChoose);
         colorListener = new ColorListener(taskSet);
+        createVarListener = new CreateVarListener(colorListener,mainPanel, textFieldCountVar);
+        pathListener = new PathListener(labelChoosePath,buttonChoose,createVarListener);
         themesDesign = new ThemesDesign(textFieldCountVar, labelInputCountVar, lowPanel, buttonCreateVar, checkAllTask,
                 labelChoseTask, topPanel, tabPane1, page1Panel, pageSettings, radioButtonLight, radioButtonDark, radioButtonContrast,
                 labelChooseTheme, settingsTopPanel, settingsTreePanel, labelChoosePath, mainPanel, buttonPanel);
         radioListener = new RadioListener(radioButtonLight, radioButtonDark, radioButtonContrast, page1Panel, pageSettings, themesDesign);
         buttonProperties = new ButtonProperties(colorListener, buttons);
         buttonProperties.buttonPropertiesRun();
-        createVarListener = new CreateVarListener(colorListener, pathListener, mainPanel, textFieldCountVar);
         checkItemListener = new CheckItemListener(taskSet, checkAllTask, buttons);
         buttonCreateVar.addActionListener(createVarListener);
         buttonChoose.addActionListener(pathListener);
@@ -86,7 +86,6 @@ public class App extends JFrame {
         radioButtonContrast.addActionListener(radioListener);
         themesDesign.initPropertiesBlack();
         checkAllTask.addItemListener(checkItemListener);
-
         radioButtonDark.setSelected(true);
     }
 }
