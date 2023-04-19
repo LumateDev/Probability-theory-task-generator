@@ -86,5 +86,7 @@ public class App extends JFrame {
         radioButtonContrast.addActionListener(radioListener);
         themesDesign.initPropertiesBlack();
         checkAllTask.addItemListener(checkItemListener);
+
+        radioButtonDark.setSelected(true);
     }
 }

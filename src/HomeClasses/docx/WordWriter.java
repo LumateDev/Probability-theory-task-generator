@@ -9,7 +9,7 @@ public class WordWriter {
     private FileDocx fileDocx;
     private FileDocx fileAnswers;
     private final String filesPath;
-    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃"};
+    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "x₃"};
     public WordWriter(int[] taskArray, int countVariants, String filesPath){
         this.taskArray = taskArray;
         this.countVariants = countVariants;
@@ -71,6 +71,10 @@ public class WordWriter {
             case 4:
                 fileDocx.addTextBolt("4. ");
                 fileAnswers.addTaleItem(createTask4(var), countTask, var);
+                break;
+            case 5:
+                fileDocx.addTextBolt("5. ");
+                fileAnswers.addTaleItem(createTask5(var), countTask, var);
                 break;
         }
     }
@@ -212,6 +216,45 @@ public class WordWriter {
         fileDocx.addTextBreak("Тогда относительная частота варианты " + specialSymbols[0] + " = 5 равна:");
 
         String[] s = {"0.5", "0.25", "0.18", "0.13"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(Double.toString(answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask5(int var){
+        while (var > 4)
+            var -= 4;
+        double answer = 0.0;
+        String questionStr = "Из генеральной совокупности извлечена выборка объема n = ";
+        if(var == 1){
+            fileDocx.addText(questionStr + 160);
+            answer = 0.25;
+        }
+        else if(var == 2){
+            fileDocx.addText(questionStr + 40);
+            answer = 1.0;
+        }
+        else if(var == 3){
+            fileDocx.addText(questionStr + 66.66);
+            answer = 0.6;
+        }
+        else if(var == 4){
+            fileDocx.addText(questionStr + 666.66);
+            answer = 0.06;
+        }
+        fileDocx.addTextBreak(", полигон частот которой имеет вид: ");
+        fileDocx.addPicture("src\\res\\image\\график задание 5.jpg", 386, 244);
+        fileDocx.addTextBreak("Тогда относительная частота варианты " + specialSymbols[5] + " = 6 в выборке равна:");
+
+        String[] s = {"0.06", "0.6", "0.25", "1.0"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));

@@ -114,6 +114,7 @@ public class FileDocx {
             run.addPicture(imageData, imageType, imageFileName,
                     Units.toEMU(width),
                     Units.toEMU(height));
+            run.addBreak();
         } catch (InvalidFormatException | IOException e) {
             throw new RuntimeException(e);
         }
