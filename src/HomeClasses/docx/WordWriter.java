@@ -1,3 +1,5 @@
+package HomeClasses.docx;
+
 import java.io.File;
 import java.util.*;
 
@@ -6,9 +8,9 @@ public class WordWriter {
     private final int counterVariantos;
     private FileDocx fileDocx;
     private FileDocx fileOtvet;
-    private String filesPath;
+    private final String filesPath;
 
-    WordWriter(int[] taskArray, int counterVariantos,String filesPath){
+    public WordWriter(int[] taskArray, int counterVariantos, String filesPath){
         this.taskArray = taskArray;
         this.counterVariantos = counterVariantos;
         this.filesPath = filesPath;
@@ -19,11 +21,11 @@ public class WordWriter {
         createToVariantos();
     }
     String arrayToString(int[] array){
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for(int i = 0; i < array.length-1; i++)
-            str += array[i] + ", ";
-        str+= array[array.length-1] + " ";
-        return str;
+            str.append(array[i]).append(", ");
+        str.append(array[array.length - 1]).append(" ");
+        return str.toString();
     }
     int getRandomNumber(int min, int max){
         return new Random().nextInt(max - min) + min;
@@ -40,7 +42,7 @@ public class WordWriter {
         fileOtvet.initCol(taskArray.length);
         for(int variant = 1; variant <= counterVariantos; variant++){
             //code create File variant
-            fileDocx = new FileDocx(filesPath + "\\Вариант " + String.valueOf(variant));
+            fileDocx = new FileDocx(filesPath + "\\Вариант " + variant);
             fileDocx.newParagraph();
             fileDocx.addHeader("Тест 2. Вариант " + variant);
             for(int task = 0; task < taskArray.length; task++){

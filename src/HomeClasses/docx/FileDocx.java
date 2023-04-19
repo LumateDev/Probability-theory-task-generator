@@ -1,3 +1,5 @@
+package HomeClasses.docx;
+
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTJc;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTTblPr;
@@ -6,8 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileDocx {
-    private String nameFile;
-    private XWPFDocument docx;
+    private final String nameFile;
+    private final XWPFDocument docx;
     private XWPFTable table;
     private XWPFParagraph paragraph;
     private XWPFRun run;

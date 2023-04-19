@@ -1,8 +1,10 @@
+package HomeClasses.TaskManager;
+
 import java.util.Comparator;
 import java.util.Objects;
 public class Task {
     private final int numberTask;
-    Task(int numberTask) {
+    public Task(int numberTask) {
         this.numberTask = numberTask;
     }
     public int getNumberTask() {
