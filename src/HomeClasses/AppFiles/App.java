@@ -48,13 +48,13 @@ public class App extends JFrame {
     private JPanel settingsTreePanel;
     private JLabel labelChoosePath;
     private JButton buttonChoose;
-    ColorListener colorListener;
-    RadioListener radioListener;
-    PathListener pathListener;
-    CreateVarListener createVarListener;
-    ThemesDesign themesDesign;
-    CheckItemListener chekItemListener;
-    ButtonProperties buttonProperties;
+    final ColorListener colorListener;
+    final RadioListener radioListener;
+    final PathListener pathListener;
+    final CreateVarListener createVarListener;
+    final ThemesDesign themesDesign;
+    final CheckItemListener checkItemListener;
+    final ButtonProperties buttonProperties;
     App(){
         super("Генератора задач по Теории вероятности");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +69,7 @@ public class App extends JFrame {
                         buttonTask8, buttonTask9, buttonTask10, buttonTask11, buttonTask12, buttonTask13, buttonTask14,
                         buttonTask15, buttonTask16, buttonTask17, buttonTask18, buttonTask19, buttonTask20, buttonTask21
                 };
-        pathListener = new PathListener();
+        pathListener = new PathListener(labelChoosePath,buttonChoose);
         colorListener = new ColorListener(taskSet);
         themesDesign = new ThemesDesign(textFieldCountVar, labelInputCountVar, lowPanel, buttonCreateVar, checkAllTask,
                 labelChoseTask, topPanel, tabPane1, page1Panel, pageSettings, radioButtonLight, radioButtonDark, radioButtonContrast,
@@ -78,17 +78,13 @@ public class App extends JFrame {
         buttonProperties = new ButtonProperties(colorListener, buttons);
         buttonProperties.buttonPropertiesRun();
         createVarListener = new CreateVarListener(colorListener, pathListener, mainPanel, textFieldCountVar);
-        chekItemListener = new CheckItemListener(taskSet, checkAllTask, buttons);
+        checkItemListener = new CheckItemListener(taskSet, checkAllTask, buttons);
         buttonCreateVar.addActionListener(createVarListener);
         buttonChoose.addActionListener(pathListener);
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(radioButtonDark);
-        buttonGroup.add(radioButtonLight);
-        buttonGroup.add(radioButtonContrast);
         radioButtonDark.addActionListener(radioListener);
         radioButtonLight.addActionListener(radioListener);
         radioButtonContrast.addActionListener(radioListener);
         themesDesign.initPropertiesBlack();
-        checkAllTask.addItemListener(chekItemListener);
+        checkAllTask.addItemListener(checkItemListener);
     }
 }

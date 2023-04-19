@@ -5,20 +5,20 @@ import java.util.*;
 
 public class WordWriter {
     private final int[] taskArray;
-    private final int counterVariantos;
+    private final int countVariants;
     private FileDocx fileDocx;
-    private FileDocx fileOtvet;
+    private FileDocx fileAnswers;
     private final String filesPath;
 
-    public WordWriter(int[] taskArray, int counterVariantos, String filesPath){
+    public WordWriter(int[] taskArray, int countVariants, String filesPath){
         this.taskArray = taskArray;
-        this.counterVariantos = counterVariantos;
+        this.countVariants = countVariants;
         this.filesPath = filesPath;
         File theDir = new File(filesPath);
         if (!theDir.exists()){
             theDir.mkdirs();
         }
-        createToVariantos();
+        createVariants();
     }
     String arrayToString(int[] array){
         StringBuilder str = new StringBuilder();
@@ -35,12 +35,12 @@ public class WordWriter {
         return min + Math.random() * (max - min);
     }
 
-    void createToVariantos(){
-        fileOtvet = new FileDocx(filesPath + "\\ответы");
-        fileOtvet.initTable(taskArray.length+1, counterVariantos + 1);
-        fileOtvet.initRow(counterVariantos);
-        fileOtvet.initCol(taskArray.length);
-        for(int variant = 1; variant <= counterVariantos; variant++){
+    void createVariants(){
+        fileAnswers = new FileDocx(filesPath + "\\ответы");
+        fileAnswers.initTable(taskArray.length+1, countVariants + 1);
+        fileAnswers.initRow(countVariants);
+        fileAnswers.initCol(taskArray.length);
+        for(int variant = 1; variant <= countVariants; variant++){
             //code create File variant
             fileDocx = new FileDocx(filesPath + "\\Вариант " + variant);
             fileDocx.newParagraph();
@@ -51,26 +51,26 @@ public class WordWriter {
             }
             fileDocx.printToFile();
         }
-        fileOtvet.printToFile();
+        fileAnswers.printToFile();
     }
 
     void createTask(int t, int var){
         switch (t){
             case 1:
                 fileDocx.addTextBolt("1. ");
-                fileOtvet.addTaleItem(createTask1(var+1), 1, var+1);
+                fileAnswers.addTaleItem(createTask1(var+1), 1, var+1);
                 break;
             case 2:
                 fileDocx.addTextBolt("2. ");
-                fileOtvet.addTaleItem(createTask2(var+1), 2, var+1);
+                fileAnswers.addTaleItem(createTask2(var+1), 2, var+1);
                 break;
             case 3:
                 fileDocx.addTextBolt("3. ");
-                fileOtvet.addTaleItem(createTask3(var+1), 3, var+1);
+                fileAnswers.addTaleItem(createTask3(var+1), 3, var+1);
                 break;
             case 4:
                 fileDocx.addTextBolt("4. ");
-                fileOtvet.addTaleItem(createTask4(var+1), 4, var+1);
+                fileAnswers.addTaleItem(createTask4(var+1), 4, var+1);
                 break;
         }
     }

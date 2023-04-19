@@ -8,7 +8,12 @@ import java.io.File;
 
 public class PathListener implements ActionListener {
     public String userFilePath;
-
+    private final JLabel labelChoosePath;
+    private final JButton buttonChoose;
+    public PathListener (JLabel labelChoosePath, JButton buttonChoose) {
+        this.labelChoosePath = labelChoosePath;
+        this.buttonChoose = buttonChoose;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser rootChoose = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
@@ -16,6 +21,8 @@ public class PathListener implements ActionListener {
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = rootChoose.getSelectedFile();
             userFilePath = selectedFile.getAbsolutePath();
+            labelChoosePath.setText(userFilePath);
+            buttonChoose.setText("Изменить");
         }
     }
 

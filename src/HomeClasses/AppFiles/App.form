@@ -441,4 +441,11 @@
       </tabbedpane>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="themesRadioGroup">
+      <member id="e2889"/>
+      <member id="8fbc4"/>
+      <member id="d9667"/>
+    </group>
+  </buttonGroups>
 </form>
