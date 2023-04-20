@@ -76,6 +76,10 @@ public class WordWriter {
                 fileDocx.addTextBolt("5. ");
                 fileAnswers.addTaleItem(createTask5(var), countTask, var);
                 break;
+            case 7:
+                fileDocx.addTextBolt("7. ");
+                fileAnswers.addTaleItem(createTask7(var), countTask, var);
+                break;
         }
     }
 
@@ -267,4 +271,50 @@ public class WordWriter {
         }
         return "Error";
     }
+
+    String createTask7(int var){
+        while (var > 4)
+            var -= 4;
+        double answer = 0.0;
+        String[] rowTable = new String[]{ specialSymbols[0], "12", "14", "15", "19"};
+        String questionStr = "Из генеральной совокупности извлечена выборка объёма n = ";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStr + 40 + ":");
+            answer = 13.1;
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStr + 27.5 + ":");
+            answer = 19.0;
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStr + 655 + ":");
+            answer = 0.8;
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStr + 349 + ":");
+            answer = 1.5;
+        }
+        //запись таблицы
+        fileDocx.initTable(2, 5);
+        fileDocx.addTableArrayRow(rowTable, 0);
+        rowTable = new String[]{specialSymbols[3], "22", "14", "3", "1"};
+        fileDocx.addTableArrayRow(rowTable, 1);
+
+        fileDocx.newParagraph();
+        fileDocx.addTextBreak("Тогда несмещенная оценка математического ожидания равна: ");
+
+        String[] s = {"0.8", "1.5", "13.1", "19.0"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(Double.toString(answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
 }
