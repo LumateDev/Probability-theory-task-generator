@@ -85,6 +85,10 @@ public class WordWriter {
                 fileDocx.addTextBolt("8. ");
                 fileAnswers.addTaleItem(createTask8(var), countTask, var);
                 break;
+            case 9:
+                fileDocx.addTextBolt("9. ");
+                fileAnswers.addTaleItem(createTask9(var), countTask, var);
+                break;
         }
     }
 
@@ -348,6 +352,42 @@ public class WordWriter {
         int k = 0;
         for(String i : v){
             if(i.equals(Double.toString(answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask9(int var){
+        while (var > 4)
+            var -= 4;
+        int answer = 0;
+        String questionStr = "Проведено четыре измерения (без систематических ошибок) некоторой случайной величины (в мм): 2, 3, 4, x. Если выборочная дисперсия равна ";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStr + 3.5 + ", то значение x равно:");
+            answer = 7;
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStr + 0.5 + ", то значение x равно:");
+            answer = 3;
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStr + 12.5 + ", то значение x равно:");
+            answer = 11;
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStr + 27.5 + ", то значение x равно:");
+            answer = 15;
+        }
+
+        String[] s = {"7", "3", "11", "15"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(Integer.toString(answer)))
                 return b[k];
             k ++;
         }
