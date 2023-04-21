@@ -117,6 +117,14 @@ public class WordWriter {
                 fileDocx.addTextBolt("9. ");
                 fileAnswers.addTaleItem(createTask9(var), row, col);
                 break;
+            case 10:
+                fileDocx.addTextBolt("10. ");
+                fileAnswers.addTaleItem(createTask10(var), row, col);
+                break;
+            case 11:
+                fileDocx.addTextBolt("11. ");
+                fileAnswers.addTaleItem(createTask11(var), row, col);
+                break;
         }
     }
 
@@ -422,6 +430,79 @@ public class WordWriter {
         int k = 0;
         for(String i : v){
             if(i.equals(Integer.toString(answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask10(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Если все варианты " + specialSymbols[0] + " исходного вариационного ряда увеличить  ";
+        String questionStrEnd = " ,то выборочная дисперсия DB:";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + "в 2 раза" + questionStrEnd);
+            answer = "увеличится в четыре раза";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + "в 3 раза" + questionStrEnd);
+            answer = "увеличиться в девять раз";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + "на 9 едениц" + questionStrEnd);
+            answer = "не измениться";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + "в 5 раз" + questionStrEnd);
+            answer = "увеличиться в 25 раз";
+        }
+
+        String[] s = {"увеличится в четыре раза", "увеличиться в девять раз", "не измениться", "увеличиться в 25 раз"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+    String createTask11(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Если все варианты " + specialSymbols[0] + " исходного вариационного ряда ";
+        String questionStrEnd = " ,то выборочное среднее XB :";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + "уменьшить на 3 еденицы" + questionStrEnd);
+            answer = "уменьшится на три еденицы";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + "увеличить в три раза" + questionStrEnd);
+            answer = "увеличиться в три раза";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + "уменьшить в три раза" + questionStrEnd);
+            answer = "уменьшиться в три раза";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + "увеличить на три еденицы" + questionStrEnd);
+            answer = "увеличиться на 3 еденицы";
+        }
+
+        String[] s = {"уменьшится на три еденицы", "увеличиться в три раза", "уменьшиться в три раза", "увеличиться на 3 еденицы"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
                 return b[k];
             k ++;
         }
