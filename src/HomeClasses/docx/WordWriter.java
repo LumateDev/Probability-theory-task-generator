@@ -101,6 +101,10 @@ public class WordWriter {
                 fileDocx.addTextBolt("5. ");
                 fileAnswers.addTaleItem(createTask5(var), row, col);
                 break;
+            case 6:
+                fileDocx.addTextBolt("6. ");
+                createTask6(var);
+                break;
             case 7:
                 fileDocx.addTextBolt("7. ");
                 fileAnswers.addTaleItem(createTask7(var), row, col);
@@ -285,7 +289,7 @@ public class WordWriter {
             answer = 0.13;
         }
         fileDocx.addTextBreak("полигон частот которой имеет вид: ");
-        fileDocx.addPicture("src\\res\\image\\график задание 5.jpg", 386, 244);
+        fileDocx.addPicture("src\\res\\image\\график задание 5.png", 309, 196);
         fileDocx.addTextBreak("Тогда относительная частота варианты " + specialSymbolsX[var-1] + " = " + var *2 +" в выборке равна:");
 
         String[] s = {"0.15", "0.36", "0.25", "0.13"};
@@ -301,7 +305,9 @@ public class WordWriter {
         }
         return "Error";
     }
-
+    void createTask6(int var){
+        fileDocx.addPicture("src\\res\\image\\график задание 6.png", 280, 195);
+    }
     String createTask7(int var){
         while (var > 4)
             var -= 4;
@@ -350,21 +356,23 @@ public class WordWriter {
         while (var > 4)
             var -= 4;
         double answer = 0.0;
-        String questionStr = "В результате измерений некоторой физической величины одним прибором (без систематических ошибок) получены следующие результаты (в мм): ";
+        String questionStrBegin = "В результате измерений некоторой физической величины одним прибором " +
+                "(без систематических ошибок) получены следующие результаты (в мм): ";
+        String questionStrEnd = "Тогда несмещенная оценка дисперсии равна:";
         if(var == 1){
-            fileDocx.addTextBreak(questionStr + "4,6; 6,2; 6,6. Тогда несмещенная оценка дисперсии равна:");
+            fileDocx.addTextBreak(questionStrBegin + "4,6; 6,2; 6,6. " + questionStrEnd);
             answer = 1.12;
         }
         else if(var == 2){
-            fileDocx.addTextBreak(questionStr + "5,2; 6,4; 7,0. Тогда несмещенная оценка дисперсии равна:");
+            fileDocx.addTextBreak(questionStrBegin + "5,2; 6,4; 7,0. " + questionStrEnd);
             answer = 0.84;
         }
         else if(var == 3){
-            fileDocx.addTextBreak(questionStr +"7,3; 8,4; 9,2. Тогда несмещенная оценка дисперсии равна:");
+            fileDocx.addTextBreak(questionStrBegin +"7,3; 8,4; 9,2. " + questionStrEnd);
             answer = 0.91;
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStr + "5,2; 6,5; 9,3. Тогда несмещенная оценка дисперсии равна:");
+            fileDocx.addTextBreak(questionStrBegin + "5,2; 6,5; 9,3. " + questionStrEnd);
             answer = 4.39;
         }
 
@@ -386,21 +394,23 @@ public class WordWriter {
         while (var > 4)
             var -= 4;
         int answer = 0;
-        String questionStr = "Проведено четыре измерения (без систематических ошибок) некоторой случайной величины (в мм): 2, 3, 4, x. Если выборочная дисперсия равна ";
+        String questionStrBegin = "Проведено четыре измерения (без систематических ошибок) некоторой " +
+                "случайной величины (в мм): 2, 3, 4, x. Если выборочная дисперсия равна ";
+        String questionStrEnd =", то значение x равно:";
         if(var == 1){
-            fileDocx.addTextBreak(questionStr + 3.5 + ", то значение x равно:");
+            fileDocx.addTextBreak(questionStrBegin + 3.5 + questionStrEnd);
             answer = 7;
         }
         else if(var == 2){
-            fileDocx.addTextBreak(questionStr + 0.5 + ", то значение x равно:");
+            fileDocx.addTextBreak(questionStrBegin + 0.5 + questionStrEnd);
             answer = 3;
         }
         else if(var == 3){
-            fileDocx.addTextBreak(questionStr + 12.5 + ", то значение x равно:");
+            fileDocx.addTextBreak(questionStrBegin + 12.5 + questionStrEnd);
             answer = 11;
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStr + 27.5 + ", то значение x равно:");
+            fileDocx.addTextBreak(questionStrBegin + 27.5 + questionStrEnd);
             answer = 15;
         }
 
