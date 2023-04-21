@@ -15,8 +15,12 @@ public class FileDocx {
     private XWPFTable table;
     private XWPFParagraph paragraph;
     private XWPFRun run;
-    FileDocx(String nameFile){
+    private final String font;
+    private final int fontSize;
+    FileDocx(String nameFile, String font, int fontSize){
         this.nameFile = nameFile;
+        this.font = font;
+        this.fontSize = fontSize;
         docx = new XWPFDocument();
     }
     void newParagraph(){
@@ -26,43 +30,43 @@ public class FileDocx {
     void addHeader(String str){
         addTextBoltCenter(str);
         newParagraph();
-        run.setFontSize(18);
+        run.setFontSize(fontSize);
         run.setText("Фамилия______________________Группа________");
         run.addBreak();
-        run.setFontFamily("Times New Roman");
+        run.setFontFamily(font);
     }
     void addTextBreak(String str){
         run = paragraph.createRun();
-        run.setFontSize(18);
+        run.setFontSize(fontSize);
         run.setText(str);
         run.addBreak();
-        run.setFontFamily("Times New Roman");
+        run.setFontFamily(font);
     }
     void addText(String str){
         run = paragraph.createRun();
-        run.setFontSize(18);
+        run.setFontSize(fontSize);
         run.setText(str);
         run.addTab();
-        run.setFontFamily("Times New Roman");
+        run.setFontFamily(font);
     }
     void addTextArray(int[] array){
-        run.setFontSize(18);
-        run.setFontFamily("Times New Roman");
+        run.setFontSize(fontSize);
+        run.setFontFamily(font);
         for (int j : array) run.setText(j + ", ");
     }
     void addTextBoltCenter(String str){
         paragraph.setAlignment(ParagraphAlignment.CENTER);
-        run.setFontSize(18);
+        run.setFontSize(fontSize);
         run.setBold(true);
         run.setText(str);
         run.addBreak();
-        run.setFontFamily("Times New Roman");
+        run.setFontFamily(font);
     }
     void addTextBolt(String str){
-        run.setFontSize(18);
+        run.setFontSize(fontSize);
         run.setBold(true);
         run.setText(str);
-        run.setFontFamily("Times New Roman");
+        run.setFontFamily(font);
         run.addTab();
     }
     void setTableAlign(XWPFTable table,ParagraphAlignment align) {
@@ -74,15 +78,15 @@ public class FileDocx {
     void initTable(int row, int col){
         table = docx.createTable(row, col);
         setTableAlign(table, ParagraphAlignment.CENTER);
-        table.setCellMargins(5, 100, 5, 100);
+        table.setCellMargins(5, 200, 5, 200);
     }
     void addTaleItem(String str, int row, int col){
         paragraph = table.getRow(row).getCell(col).getParagraphs().get(0);
         paragraph.setAlignment(ParagraphAlignment.CENTER);
         run = paragraph.createRun();
-        run.setFontSize(18);
+        run.setFontSize(fontSize);
         run.setText(str);
-        run.setFontFamily("Times New Roman");
+        run.setFontFamily(font);
     }
     void addTableArrayRow(String[] s, int row){
         for(int i = 0; i < s.length; i++){
@@ -100,6 +104,14 @@ public class FileDocx {
             addTaleItem("Вар-"+i, 0, i);
         }
     }
+    void initRow(int a, int b){
+        addTaleItem("№", 0, 0);
+        for(int i = 0; i < b; i++){
+            addTaleItem("Вар-" + a, 0, i+1);
+            a++;
+        }
+    }
+
     void addPicture(String picture, int width, int height){
         File image = new File(picture);
         FileInputStream imageData = null;

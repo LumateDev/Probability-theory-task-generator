@@ -37,57 +37,81 @@ public class WordWriter {
     }
 
     void createVariants(){
-        fileAnswers = new FileDocx(filesPath + "\\ответы");
-        fileAnswers.initTable(taskArray.length+1, countVariants + 1);
-        fileAnswers.initRow(countVariants);
-        fileAnswers.initCol(taskArray);
+        fileAnswers = new FileDocx(filesPath + "\\ответы", "Times New Roman", 14);
+        int k = 0;
+        int col = 1;
+        int row = 1;
         for(int variant = 1; variant <= countVariants; variant++){
             //code create File variant
-            fileDocx = new FileDocx(filesPath + "\\Вариант " + variant);
+            if(k  == 8 || k == 0){
+                if(countVariants - variant >= 8){
+                    fileAnswers.newParagraph();
+                    fileAnswers.initTable(taskArray.length+1, 9);
+                    fileAnswers.initRow(variant, 8);
+                    fileAnswers.initCol(taskArray);
+                    col = 1;
+                    row = 1;
+                }
+                else{
+                    fileAnswers.newParagraph();
+                    fileAnswers.initTable(taskArray.length+1, (countVariants - variant) + 2);
+                    fileAnswers.initRow(variant, countVariants - variant + 1);
+                    fileAnswers.initCol(taskArray);
+                    col = 1;
+                    row = 1;
+                }
+                k = 0;
+            }
+            k++;
+            fileDocx = new FileDocx(filesPath + "\\Вариант " + variant, "Times New Roman", 16);
             fileDocx.newParagraph();
             fileDocx.addHeader("Тест 2. Вариант " + variant);
             for(int task = 0; task < taskArray.length; task++){
                 fileDocx.newParagraph();
-                createTask(taskArray[task], variant, task+1);
+                createTask(taskArray[task], variant, row, col);
+                row++;
             }
+            col++;
+            row = 1;
             fileDocx.printToFile();
         }
+
         fileAnswers.printToFile();
     }
 
-    void createTask(int t, int var, int countTask) {
+    void createTask(int t, int var, int row, int col) {
         switch (t){
             case 1:
                 fileDocx.addTextBolt("1. ");
-                fileAnswers.addTaleItem(createTask1(var), countTask, var);
+                fileAnswers.addTaleItem(createTask1(var), row, col);
                 break;
             case 2:
                 fileDocx.addTextBolt("2. ");
-                fileAnswers.addTaleItem(createTask2(var), countTask, var);
+                fileAnswers.addTaleItem(createTask2(var), row, col);
                 break;
             case 3:
                 fileDocx.addTextBolt("3. ");
-                fileAnswers.addTaleItem(createTask3(var), countTask, var);
+                fileAnswers.addTaleItem(createTask3(var), row, col);
                 break;
             case 4:
                 fileDocx.addTextBolt("4. ");
-                fileAnswers.addTaleItem(createTask4(var), countTask, var);
+                fileAnswers.addTaleItem(createTask4(var), row, col);
                 break;
             case 5:
                 fileDocx.addTextBolt("5. ");
-                fileAnswers.addTaleItem(createTask5(var), countTask, var);
+                fileAnswers.addTaleItem(createTask5(var), row, col);
                 break;
             case 7:
                 fileDocx.addTextBolt("7. ");
-                fileAnswers.addTaleItem(createTask7(var), countTask, var);
+                fileAnswers.addTaleItem(createTask7(var), row, col);
                 break;
             case 8:
                 fileDocx.addTextBolt("8. ");
-                fileAnswers.addTaleItem(createTask8(var), countTask, var);
+                fileAnswers.addTaleItem(createTask8(var), row, col);
                 break;
             case 9:
                 fileDocx.addTextBolt("9. ");
-                fileAnswers.addTaleItem(createTask9(var), countTask, var);
+                fileAnswers.addTaleItem(createTask9(var), row, col);
                 break;
         }
     }
@@ -246,7 +270,7 @@ public class WordWriter {
         while (var > 4)
             var -= 4;
         double answer = 0.0;
-        fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объема n = 160");
+        fileDocx.addText("Из генеральной совокупности извлечена выборка объема n = 160,");
 
         if(var == 1){
             answer = 0.15;
