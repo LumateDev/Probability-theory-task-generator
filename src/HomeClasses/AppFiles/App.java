@@ -48,6 +48,10 @@ public class App extends JFrame {
     private JPanel settingsTreePanel;
     private JLabel labelChoosePath;
     private JButton buttonChoose;
+    private JComboBox comboBoxFontFamily;
+    private JComboBox comboBoxFontSize;
+    private JLabel labelChoseFontFamily;
+    private JLabel labelChoseFontSize;
     final ColorListener colorListener;
     final RadioListener radioListener;
     final PathListener pathListener;
@@ -55,11 +59,13 @@ public class App extends JFrame {
     final ThemesDesign themesDesign;
     final CheckItemListener checkItemListener;
     final ButtonProperties buttonProperties;
+    final FontSizeListener fontSizeListener;
+    final FontFamilyListener fontFamilyListener;
     App(){
         super("Генератора задач по Теории вероятности");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(mainPanel);
-        setSize(720, 580);
+        setSize(818, 580);
         setResizable(false);
         setVisible(true);
         Set<Task> taskSet = new HashSet<>();
@@ -70,16 +76,24 @@ public class App extends JFrame {
                         buttonTask15, buttonTask16, buttonTask17, buttonTask18, buttonTask19, buttonTask20, buttonTask21
                 };
         colorListener = new ColorListener(taskSet);
-        createVarListener = new CreateVarListener(colorListener,mainPanel, textFieldCountVar);
+        fontSizeListener = new FontSizeListener();
+        fontFamilyListener = new FontFamilyListener();
+        createVarListener = new CreateVarListener(colorListener,mainPanel, textFieldCountVar, fontSizeListener, fontFamilyListener);
         pathListener = new PathListener(labelChoosePath,buttonChoose,createVarListener);
-        themesDesign = new ThemesDesign(textFieldCountVar, labelInputCountVar, lowPanel, buttonCreateVar, checkAllTask,
-                labelChoseTask, topPanel, tabPane1, page1Panel, pageSettings, radioButtonLight, radioButtonDark, radioButtonContrast,
-                labelChooseTheme, settingsTopPanel, settingsTreePanel, labelChoosePath, mainPanel, buttonPanel);
+        themesDesign = new ThemesDesign
+                (
+                    textFieldCountVar, labelInputCountVar, lowPanel, buttonCreateVar,
+                    checkAllTask, labelChoseTask, topPanel, tabPane1, page1Panel, pageSettings, radioButtonLight,
+                    radioButtonDark, radioButtonContrast, labelChooseTheme, settingsTopPanel, settingsTreePanel,
+                    labelChoosePath, mainPanel, buttonPanel, labelChoseFontFamily, labelChoseFontSize
+                );
         radioListener = new RadioListener(radioButtonLight, radioButtonDark, radioButtonContrast, page1Panel, pageSettings, themesDesign);
         buttonProperties = new ButtonProperties(colorListener, buttons);
         buttonProperties.buttonPropertiesRun();
         checkItemListener = new CheckItemListener(taskSet, checkAllTask, buttons);
         buttonCreateVar.addActionListener(createVarListener);
+        comboBoxFontFamily.addActionListener(fontFamilyListener);
+        comboBoxFontSize.addActionListener(fontSizeListener);
         buttonChoose.addActionListener(pathListener);
         radioButtonDark.addActionListener(radioListener);
         radioButtonLight.addActionListener(radioListener);

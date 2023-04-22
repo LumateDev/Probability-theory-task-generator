@@ -14,7 +14,7 @@ public class ColorListener implements ActionListener {
     public ColorListener(Set<Task> taskSet){
         this.taskSet = taskSet;
     }
-
+    @Override
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton)e.getSource();
         int elem = Integer.parseInt(button.getText());

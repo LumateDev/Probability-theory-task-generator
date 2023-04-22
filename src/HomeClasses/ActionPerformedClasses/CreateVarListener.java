@@ -15,11 +15,20 @@ public class CreateVarListener implements ActionListener {
     private String userFilePath;
     private final JPanel mainPanel;
     private final JTextField textFieldCountVar;
+    FontSizeListener fontSizeListener;
+    FontFamilyListener fontFamilyListener;
 
-    public CreateVarListener(ColorListener colorListener, JPanel mainPanel, JTextField textFieldCountVar){
+    public CreateVarListener
+    (
+            ColorListener colorListener, JPanel mainPanel, JTextField textFieldCountVar,
+            FontSizeListener fontSizeListener, FontFamilyListener fontFamilyListener
+    )
+    {
         this.taskSet = colorListener.getTaskSet();
         this.mainPanel = mainPanel;
         this.textFieldCountVar = textFieldCountVar;
+        this.fontSizeListener = fontSizeListener;
+        this.fontFamilyListener = fontFamilyListener;
     }
 
     public void setUserFilePath(String userFilePath) {
@@ -55,7 +64,14 @@ public class CreateVarListener implements ActionListener {
                         .mapToInt(Task::getNumberTask)
                         .toArray();
 
-                WordWriter wordWriter = new WordWriter(taskArray, countVar, Objects.requireNonNullElse(userFilePath, defaultFilePath));
+                WordWriter wordWriter = new WordWriter
+                (
+                        taskArray,
+                        countVar,
+                        Objects.requireNonNullElse(userFilePath, defaultFilePath),
+                        Integer.parseInt(fontSizeListener.getFontSize()),
+                        fontFamilyListener.getFontFamily()
+                );
             }
         }
         catch (Exception ex){

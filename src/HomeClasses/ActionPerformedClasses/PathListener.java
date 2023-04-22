@@ -24,6 +24,7 @@ public class PathListener implements ActionListener {
             File selectedFile = rootChoose.getSelectedFile();
             userFilePath = selectedFile.getAbsolutePath();
             labelChoosePath.setText(userFilePath);
+            System.out.println(userFilePath);
             buttonChoose.setText("Изменить");
             createVarListener.setUserFilePath(userFilePath);
         }

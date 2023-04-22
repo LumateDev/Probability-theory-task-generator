@@ -25,11 +25,14 @@ public class ThemesDesign{
     private final JPanel mainPanel;
     private final JPanel buttonPanel;
 
+    private final JLabel labelChoseFontFamily;
+    private final JLabel labelChoseFontSize;
+
     public ThemesDesign(JTextField textFieldCountVar, JLabel labelInputCountVar, JPanel lowPanel,
                         JButton buttonCreateVar, JCheckBox checkAllTask, JLabel labelChoseTask, JPanel topPanel,
                         JTabbedPane tabPane1, JPanel page1Panel, JPanel pageSettings, JRadioButton radioButtonLight,
                         JRadioButton radioButtonDark, JRadioButton radioButtonContrast, JLabel labelChooseTheme,
-                        JPanel settingsTopPanel, JPanel settingsTreePanel, JLabel labelChoosePath, JPanel mainPanel, JPanel buttonPanel)
+                        JPanel settingsTopPanel, JPanel settingsTreePanel, JLabel labelChoosePath, JPanel mainPanel, JPanel buttonPanel, JLabel labelChoseFontFamily, JLabel  labelChoseFontSize)
     {
         this.textFieldCountVar = textFieldCountVar;
         this.labelInputCountVar = labelInputCountVar;
@@ -50,6 +53,8 @@ public class ThemesDesign{
         this.labelChoosePath = labelChoosePath;
         this.mainPanel = mainPanel;
         this.buttonPanel = buttonPanel;
+        this.labelChoseFontFamily = labelChoseFontFamily;
+        this.labelChoseFontSize = labelChoseFontSize;
     }
 
     public void initPropertiesBlack() {
@@ -78,15 +83,19 @@ public class ThemesDesign{
         checkAllTask.setForeground(new Color(44,44,44));
         buttonCreateVar.setFont(new Font("Verdana" , Font.PLAIN , 20));
         labelChooseTheme.setForeground(new Color(1, 1, 1));
-        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonLight.setForeground(new Color(1, 1, 1));
-        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonDark.setForeground(new Color(1, 1, 1));
-        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonContrast.setForeground(new Color(1, 1, 1));
-        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 15));
+        labelChoseFontFamily.setForeground(new Color(1, 1, 1));
+        labelChoseFontFamily.setFont(new Font("Verdana" , Font.PLAIN, 15));
+        labelChoseFontSize.setForeground(new Color(1, 1, 1));
+        labelChoseFontSize.setFont(new Font("Verdana" , Font.PLAIN, 15));
         labelChoosePath.setForeground(new Color(44, 44, 44));
-        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 15));
     }
 
     public void initPropertiesLight(){
@@ -113,15 +122,19 @@ public class ThemesDesign{
         checkAllTask.setFont(new Font("Verdana" , Font.PLAIN , 24));
         checkAllTask.setForeground(new Color(50,50,50));
         labelChooseTheme.setForeground(new Color(24, 24, 24));
-        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonLight.setForeground(new Color(24, 24, 24));
-        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonDark.setForeground(new Color(24, 24, 24));
-        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonContrast.setForeground(new Color(24, 24, 24));
-        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 15));
+        labelChoseFontFamily.setForeground(new Color(24, 24, 24));
+        labelChoseFontFamily.setFont(new Font("Verdana" , Font.PLAIN, 15));
+        labelChoseFontSize.setForeground(new Color(24, 24, 24));
+        labelChoseFontSize.setFont(new Font("Verdana" , Font.PLAIN, 15));
         labelChoosePath.setForeground(new Color(44,44,44));
-        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 15));
     }
 
     public void initPropertiesContrast() {
@@ -148,15 +161,19 @@ public class ThemesDesign{
         checkAllTask.setFont(new Font("Verdana" , Font.PLAIN , 24));
         checkAllTask.setForeground(new Color(133,133,133));
         labelChooseTheme.setForeground(new Color(150, 150, 150));
-        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChooseTheme.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonLight.setForeground(new Color(150, 150, 150));
-        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonLight.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonDark.setForeground(new Color(150, 150, 150));
-        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonDark.setFont(new Font("Verdana" , Font.PLAIN, 15));
         radioButtonContrast.setForeground(new Color(150, 150, 150));
-        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        radioButtonContrast.setFont(new Font("Verdana" , Font.PLAIN, 15));
+        labelChoseFontFamily.setForeground(new Color(150, 150, 150));
+        labelChoseFontFamily.setFont(new Font("Verdana" , Font.PLAIN, 15));
+        labelChoseFontSize.setForeground(new Color(150, 150, 150));
+        labelChoseFontSize.setFont(new Font("Verdana" , Font.PLAIN, 15));
         labelChoosePath.setForeground(new Color(133,133,133));
-        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 16));
+        labelChoosePath.setFont(new Font("Verdana" , Font.PLAIN, 15));
 
     }
 }

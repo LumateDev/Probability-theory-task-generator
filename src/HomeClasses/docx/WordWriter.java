@@ -9,12 +9,16 @@ public class WordWriter {
     private FileDocx fileDocx;
     private FileDocx fileAnswers;
     private final String filesPath;
+    int fontSize;
+    String fontFamily;
     private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃"};
     private final String [] specialSymbolsX = {"x₁", "x₂" ,"x₃", "x₄"};
-    public WordWriter(int[] taskArray, int countVariants, String filesPath){
+    public WordWriter(int[] taskArray, int countVariants, String filesPath, int fontSize, String fontFamily){
         this.taskArray = taskArray;
         this.countVariants = countVariants;
         this.filesPath = filesPath;
+        this.fontSize = fontSize;
+        this.fontFamily = fontFamily;
         File theDir = new File(filesPath);
         if (!theDir.exists()){
             theDir.mkdirs();
@@ -37,7 +41,7 @@ public class WordWriter {
     }
 
     void createVariants(){
-        fileAnswers = new FileDocx(filesPath + "\\ответы", "Times New Roman", 14);
+        fileAnswers = new FileDocx(filesPath + "\\ответы", fontFamily, 14);
         int k = 0;
         int col = 1;
         int row = 1;
@@ -63,7 +67,7 @@ public class WordWriter {
                 k = 0;
             }
             k++;
-            fileDocx = new FileDocx(filesPath + "\\Вариант " + variant, "Times New Roman", 16);
+            fileDocx = new FileDocx(filesPath + "\\Вариант " + variant, fontFamily, fontSize);
             fileDocx.newParagraph();
             fileDocx.addHeader("Тест 2. Вариант " + variant);
             for(int task = 0; task < taskArray.length; task++){
