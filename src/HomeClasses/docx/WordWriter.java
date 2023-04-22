@@ -136,6 +136,11 @@ public class WordWriter {
                 fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask11(var), row, col);
                 break;
+            case 12:
+                fileDocx.addTextBolt("12.");
+                fileDocx.addTab();
+                fileAnswers.addTaleItem(createTask12(var), row, col);
+                break;
         }
     }
 
@@ -452,7 +457,7 @@ public class WordWriter {
             var -= 4;
         String answer = "";
         String questionStrBegin = "Если все варианты " + specialSymbols[0] + " исходного вариационного ряда увеличить ";
-        String questionStrEnd = " , то выборочная дисперсия DB:";
+        String questionStrEnd = ", то выборочная дисперсия Dв:";
         if(var == 1){
             fileDocx.addTextBreak(questionStrBegin + "в 2 раза" + questionStrEnd);
             answer = "увеличится в четыре раза";
@@ -462,7 +467,7 @@ public class WordWriter {
             answer = "увеличиться в девять раз";
         }
         else if(var == 3){
-            fileDocx.addTextBreak(questionStrBegin + "на 9 едениц" + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + "на 9 единиц" + questionStrEnd);
             answer = "не измениться";
         }
         else if(var == 4){
@@ -491,10 +496,10 @@ public class WordWriter {
             var -= 4;
         String answer = "";
         String questionStrBegin = "Если все варианты " + specialSymbols[0] + " исходного вариационного ряда ";
-        String questionStrEnd = " ,то выборочное среднее XB :";
+        String questionStrEnd = ", то выборочное среднее Xв:";
         if(var == 1){
-            fileDocx.addTextBreak(questionStrBegin + "уменьшить на 3 еденицы" + questionStrEnd);
-            answer = "уменьшится на три еденицы";
+            fileDocx.addTextBreak(questionStrBegin + "уменьшить на 3 единицы" + questionStrEnd);
+            answer = "уменьшится на три единицы";
         }
         else if(var == 2){
             fileDocx.addTextBreak(questionStrBegin + "увеличить в три раза" + questionStrEnd);
@@ -505,17 +510,60 @@ public class WordWriter {
             answer = "уменьшиться в три раза";
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStrBegin + "увеличить на три еденицы" + questionStrEnd);
-            answer = "увеличиться на 3 еденицы";
+            fileDocx.addTextBreak(questionStrBegin + "увеличить на три единицы" + questionStrEnd);
+            answer = "увеличиться на 3 единицы";
         }
 
-        String[] s = {"уменьшится на три еденицы", "увеличиться в три раза", "уменьшиться в три раза", "увеличиться на 3 еденицы"};
+        String[] s = {"уменьшится на три единицы", "увеличиться в три раза",
+                "уменьшиться в три раза", "увеличиться на 3 единицы"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addTextBreak("   а) " + v.get(0));
         fileDocx.addTextBreak("   б) " + v.get(1));
         fileDocx.addTextBreak("   в) " + v.get(2));
         fileDocx.addText("   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask12(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Дан доверительный интервал ";
+        String questionStrEnd = " для оценки математического ожидания нормально распределенного количественного признака" +
+                " при известном среднем квадратическом отклонении генеральной совокупности. Тогда при увеличении объема выборки ";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + "(20,4; 25,6)" + questionStrEnd + "в четыре раза этот" +
+                    " доверительный интервал примет вид:");
+            answer = "(21,7; 24,3)";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + "(10,3; 12,7)" + questionStrEnd + "в девять раз этот" +
+                    " доверительный интервал примет вид:");
+            answer = "(10.7; 12.3)";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + "(14,1; 20,5)" + questionStrEnd + "в четыре раза этот" +
+                    " доверительный интервал примет вид:");
+            answer = "(15,7; 18,9)";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + "(16,4; 24,2)" + questionStrEnd + "в девять раз этот" +
+                    " доверительный интервал примет вид:");
+            answer = "(17,7; 22,9)";
+        }
+
+        String[] s = {"(21,7; 24,3)", "(10.7; 12.3)", "(15,7; 18,9)", "(17,7; 22,9)"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){
