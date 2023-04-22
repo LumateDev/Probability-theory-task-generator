@@ -82,47 +82,58 @@ public class WordWriter {
     void createTask(int t, int var, int row, int col) {
         switch (t){
             case 1:
-                fileDocx.addTextBolt("1. ");
+                fileDocx.addTextBolt("1.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask1(var), row, col);
                 break;
             case 2:
-                fileDocx.addTextBolt("2. ");
+                fileDocx.addTextBolt("2.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask2(var), row, col);
                 break;
             case 3:
-                fileDocx.addTextBolt("3. ");
+                fileDocx.addTextBolt("3.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask3(var), row, col);
                 break;
             case 4:
-                fileDocx.addTextBolt("4. ");
+                fileDocx.addTextBolt("4.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask4(var), row, col);
                 break;
             case 5:
-                fileDocx.addTextBolt("5. ");
+                fileDocx.addTextBolt("5.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask5(var), row, col);
                 break;
             case 6:
-                fileDocx.addTextBolt("6. ");
+                fileDocx.addTextBolt("6.");
+                fileDocx.addTab();
                 createTask6(var);
                 break;
             case 7:
-                fileDocx.addTextBolt("7. ");
+                fileDocx.addTextBolt("7.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask7(var), row, col);
                 break;
             case 8:
-                fileDocx.addTextBolt("8. ");
+                fileDocx.addTextBolt("8.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask8(var), row, col);
                 break;
             case 9:
-                fileDocx.addTextBolt("9. ");
+                fileDocx.addTextBolt("9.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask9(var), row, col);
                 break;
             case 10:
-                fileDocx.addTextBolt("10. ");
+                fileDocx.addTextBolt("10.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask10(var), row, col);
                 break;
             case 11:
-                fileDocx.addTextBolt("11. ");
+                fileDocx.addTextBolt("11.");
+                fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask11(var), row, col);
                 break;
         }
@@ -440,8 +451,8 @@ public class WordWriter {
         while (var > 4)
             var -= 4;
         String answer = "";
-        String questionStrBegin = "Если все варианты " + specialSymbols[0] + " исходного вариационного ряда увеличить  ";
-        String questionStrEnd = " ,то выборочная дисперсия DB:";
+        String questionStrBegin = "Если все варианты " + specialSymbols[0] + " исходного вариационного ряда увеличить ";
+        String questionStrEnd = " , то выборочная дисперсия DB:";
         if(var == 1){
             fileDocx.addTextBreak(questionStrBegin + "в 2 раза" + questionStrEnd);
             answer = "увеличится в четыре раза";
@@ -462,7 +473,10 @@ public class WordWriter {
         String[] s = {"увеличится в четыре раза", "увеличиться в девять раз", "не измениться", "увеличиться в 25 раз"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
-        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        fileDocx.addTextBreak("   а) " + v.get(0));
+        fileDocx.addTextBreak("   б) " + v.get(1));
+        fileDocx.addTextBreak("   в) " + v.get(2) );
+        fileDocx.addTextBreak("   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){
@@ -498,7 +512,10 @@ public class WordWriter {
         String[] s = {"уменьшится на три еденицы", "увеличиться в три раза", "уменьшиться в три раза", "увеличиться на 3 еденицы"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
-        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        fileDocx.addTextBreak("   а) " + v.get(0));
+        fileDocx.addTextBreak("   б) " + v.get(1));
+        fileDocx.addTextBreak("   в) " + v.get(2));
+        fileDocx.addText("   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){

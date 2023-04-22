@@ -35,6 +35,10 @@ public class FileDocx {
         run.addBreak();
         run.setFontFamily(font);
     }
+    void addTab(){
+        run = paragraph.createRun();
+        run.addTab();
+    }
     void addTextBreak(String str){
         run = paragraph.createRun();
         run.setFontSize(fontSize);
@@ -64,10 +68,10 @@ public class FileDocx {
     }
     void addTextBolt(String str){
         run.setFontSize(fontSize);
+        run.setFontFamily(font);
         run.setBold(true);
         run.setText(str);
-        run.setFontFamily(font);
-        run.addTab();
+        //run.addTab();
     }
     void setTableAlign(XWPFTable table,ParagraphAlignment align) {
         CTTblPr tblPr = table.getCTTbl().getTblPr();
