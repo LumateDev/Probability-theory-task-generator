@@ -344,7 +344,7 @@ public class WordWriter {
         return "Error";
     }
     void createTask6(int var){
-        fileDocx.addPicture("src\\res\\image\\график задание 6.png", 280, 195);
+        fileDocx.addPicture("src\\res\\image\\график задание 6А.png", 280, 195);
     }
     String createTask7(int var){
         while (var > 4)
