@@ -150,6 +150,11 @@ public class WordWriter {
                 fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask13(var), row, col);
                 break;
+            case 14:
+                fileDocx.addTextBolt("14.");
+                fileDocx.addTab();
+                fileAnswers.addTaleItem(createTask14(var), row, col);
+                break;
         }
     }
 
@@ -608,6 +613,43 @@ public class WordWriter {
         }
 
         String[] s = {"1,2", "3,85", "2,95", "2,2"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask14(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Точечная оценка математического ожидания нормально распределенного количественного признака равна ";
+        String questionStrEnd = "Тогда его интервальная оценка с точностью";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + "10,05. " + questionStrEnd  + " 0,95 имеет вид:");
+            answer = "(9,1; 11)";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + "9,6. " + questionStrEnd + " 1,4 имеет вид:" );
+            answer = "(4,1; 5,5)";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + "14. " + questionStrEnd + " 2 имеет вид:");
+            answer = "(6; 8)";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + "5,2. " + questionStrEnd + " 1,1 имеет вид:");
+            answer = "(2,05; 3,15)";
+        }
+
+        String[] s = {"(9,1; 11)", "(4,1; 5,5)", "(6; 8)", "(2,05; 3,15)"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
