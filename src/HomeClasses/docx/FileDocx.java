@@ -137,6 +137,7 @@ public class FileDocx {
     }
     void printToFile(){
         try {
+            System.out.println(nameFile+".docx");
             FileOutputStream out = new FileOutputStream(nameFile+".docx");
             docx.write(out);
         } catch (IOException e) {

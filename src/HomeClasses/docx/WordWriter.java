@@ -1,5 +1,7 @@
 package HomeClasses.docx;
 
+import HomeClasses.ActionPerformedClasses.CreateVarListener;
+
 import java.io.File;
 import java.util.*;
 
@@ -19,10 +21,12 @@ public class WordWriter {
         this.filesPath = filesPath;
         this.fontSize = fontSize;
         this.fontFamily = fontFamily;
+        System.out.println(filesPath);
         File theDir = new File(filesPath);
         if (!theDir.exists()){
             theDir.mkdirs();
         }
+        System.out.println(filesPath);
         createVariants();
     }
     String arrayToString(int[] array){

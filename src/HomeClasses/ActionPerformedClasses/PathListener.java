@@ -1,10 +1,13 @@
 package HomeClasses.ActionPerformedClasses;
 
+import HomeClasses.ConfigurationClasses.PathWRC;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 public class PathListener implements ActionListener {
     public String userFilePath;
@@ -25,8 +28,10 @@ public class PathListener implements ActionListener {
             userFilePath = selectedFile.getAbsolutePath();
             labelChoosePath.setText(userFilePath);
             System.out.println(userFilePath);
-            buttonChoose.setText("Изменить");
             createVarListener.setUserFilePath(userFilePath);
+            buttonChoose.setText("Изменить");
+            PathWRC pathWRC = new PathWRC();
+            pathWRC.writeInTxt(userFilePath);
         }
     }
 }
