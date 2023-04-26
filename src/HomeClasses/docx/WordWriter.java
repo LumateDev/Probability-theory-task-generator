@@ -159,6 +159,41 @@ public class WordWriter {
                 fileDocx.addTab();
                 fileAnswers.addTaleItem(createTask14(var), row, col);
                 break;
+            case 15:
+                fileDocx.addTextBolt("15.");
+                fileDocx.addTab();
+                fileAnswers.addTaleItem(createTask15(var), row, col);
+                break;
+            case 16:
+                fileDocx.addTextBolt("16.");
+                fileDocx.addTab();
+                fileAnswers.addTaleItem(createTask16(var), row, col);
+                break;
+            case 17:
+                fileDocx.addTextBolt("17.");
+                fileDocx.addTab();
+                //fileAnswers.addTaleItem(createTask117(var), row, col);
+                break;
+            case 18:
+                fileDocx.addTextBolt("18.");
+                fileDocx.addTab();
+                //fileAnswers.addTaleItem(createTask18(var), row, col);
+                break;
+            case 19:
+                fileDocx.addTextBolt("19.");
+                fileDocx.addTab();
+                //fileAnswers.addTaleItem(createTask19(var), row, col);
+                break;
+            case 20:
+                fileDocx.addTextBolt("20.");
+                fileDocx.addTab();
+                //fileAnswers.addTaleItem(createTask20(var), row, col);
+                break;
+            case 21:
+                fileDocx.addTextBolt("21.");
+                fileDocx.addTab();
+                //fileAnswers.addTaleItem(createTask21(var), row, col);
+                break;
         }
     }
 
@@ -713,6 +748,83 @@ public class WordWriter {
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+    String createTask15(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "может определяться из соотношения:";
+        if(var == 1){
+            fileDocx.addTextBreak("Левосторонняя критическая область " + questionStrBegin);
+            answer = "P(K < – 2,4) = 0,06";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak("Правосторонняя критическая область " + questionStrBegin);
+            answer = "P(K >2,4) = 0,06";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak("Двусторонняя критическая область " + questionStrBegin);
+            answer = "P(K < – 2,4) + P(K >2,4)=0,12";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak("Область принятия гипотезы " + questionStrBegin);
+            answer = "P(K > – 2,4) = 0,06";
+        }
+
+        String[] s = {"P(K < – 2,4) = 0,06", "P(K >2,4) = 0,06", "P(K < – 2,4) + P(K >2,4)=0,12", "P(K > – 2,4) = 0,06"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addTextBreak("   а) " + v.get(0) + "   б) " + v.get(1));
+        fileDocx.addTextBreak("   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask16(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Соотношением вида ";
+        String questionStrEnd = " можно определить";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + "P(K < − 1,09) = 0,03" + questionStrEnd);
+            answer = "левостороннюю критическую область";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + "P(K >  1,09) = 0,03" + questionStrEnd);
+            answer = "правостороннюю критическую область";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + "P(K < – 1,09) + P(K >1,09) = 0,03" + questionStrEnd);
+            answer = "двустороннюю критическую область";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + "P(K > − 1,09) = 0,03" + questionStrEnd);
+            answer = "область принятия гипотезы";
+        }
+
+        String[] s = {"левостороннюю критическую область", "правостороннюю критическую область",
+                "двустороннюю критическую область", "область принятия гипотезы"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addTextBreak("   а) " + v.get(0));
+        fileDocx.addTextBreak("   б) " + v.get(1));
+        fileDocx.addTextBreak("   в) " + v.get(2));
+        fileDocx.addText("   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){
