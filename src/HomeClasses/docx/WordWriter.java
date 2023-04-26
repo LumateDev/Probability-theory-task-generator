@@ -13,7 +13,7 @@ public class WordWriter {
     private final String filesPath;
     int fontSize;
     String fontFamily;
-    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃"};
+    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ"};
     private final String [] specialSymbolsX = {"x₁", "x₂" ,"x₃", "x₄"};
     public WordWriter(int[] taskArray, int countVariants, String filesPath, int fontSize, String fontFamily){
         this.taskArray = taskArray;
@@ -117,7 +117,7 @@ public class WordWriter {
             case 6:
                 fileDocx.addTextBolt("6.");
                 fileDocx.addTab();
-                createTask6(var);
+                fileAnswers.addTaleItem(createTask6(var), row, col);
                 break;
             case 7:
                 fileDocx.addTextBolt("7.");
@@ -347,8 +347,64 @@ public class WordWriter {
         }
         return "Error";
     }
-    void createTask6(int var){
-        fileDocx.addPicture("src\\res\\image\\график задание 6А.png", 280, 195);
+    String createTask6(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "0";
+        String questionStr = "Из генеральной совокупности извлечена выборка объёма n = 250, гистограмма относительных частот которой имеет вид:";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStr);
+            fileDocx.addPicture("src\\res\\image\\график задание 6А.png", 385, 268);
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStr);
+            fileDocx.addPicture("src\\res\\image\\график задание 6Б.png", 385, 268);
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStr);
+            fileDocx.addPicture("src\\res\\image\\график задание 6В.png", 385, 268);
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = 252, гистограмма относительных частот которой имеет вид:");
+            //fileDocx.addPicture("src\\res\\image\\график задание 6A.png", 385, 268);
+        }
+        String[] rowHeader = new String[]{ specialSymbols[2], "0-4", "4-8", "8-12", "12-16" };
+        String[] rowTable;
+        String[] s = {"1", "2", "3", "4"};
+        String [] b = new String[] {"а", "б", "в","г"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        for(int i = 0; i < 4; i++){
+            fileDocx.newParagraph();
+            fileDocx.addText(" " + b[i] + ") ");
+            if(v.get(i).equals(Integer.toString(var)))
+                answer = b[i];
+            if(v.get(i).equals(Integer.toString(1))){
+                fileDocx.initTable(2, 5);
+                fileDocx.addTableArrayRow(rowHeader,0);
+                rowTable = new String[]{specialSymbols[3], "20", "50", "120", "60"};
+                fileDocx.addTableArrayRow(rowTable,1);
+            }
+            if(v.get(i).equals(Integer.toString(2))){
+                fileDocx.initTable(2, 5);
+                fileDocx.addTableArrayRow(rowHeader,0);
+                rowTable = new String[]{specialSymbols[3], "20", "50", "60", "120"};
+                fileDocx.addTableArrayRow(rowTable,1);
+            }
+            if(v.get(i).equals(Integer.toString(3))){
+                fileDocx.initTable(2, 5);
+                fileDocx.addTableArrayRow(rowHeader,0);
+                rowTable = new String[]{specialSymbols[3], "120", "50", "20", "60"};
+                fileDocx.addTableArrayRow(rowTable,1);
+            }
+            if(v.get(i).equals(Integer.toString(4))){
+                fileDocx.initTable(2, 5);
+                fileDocx.addTableArrayRow(rowHeader,0);
+                rowTable = new String[]{specialSymbols[3], "48", "64", "20", "120"};
+                fileDocx.addTableArrayRow(rowTable,1);
+            }
+        }
+        return answer;
     }
     String createTask7(int var){
         while (var > 4)
@@ -514,7 +570,7 @@ public class WordWriter {
             var -= 4;
         String answer = "";
         String questionStrBegin = "Если все варианты " + specialSymbols[0] + " исходного вариационного ряда ";
-        String questionStrEnd = ", то выборочное среднее Xв:";
+        String questionStrEnd = ", то выборочное среднее " + specialSymbols[5] + specialSymbols[6] + ":";
         if(var == 1){
             fileDocx.addTextBreak(questionStrBegin + "уменьшить на 3 единицы" + questionStrEnd);
             answer = "уменьшится на три единицы";
