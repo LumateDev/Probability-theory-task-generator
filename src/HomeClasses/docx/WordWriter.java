@@ -172,7 +172,7 @@ public class WordWriter {
             case 17:
                 fileDocx.addTextBolt("17.");
                 fileDocx.addTab();
-                //fileAnswers.addTaleItem(createTask117(var), row, col);
+                fileAnswers.addTaleItem(createTask17(var), row, col);
                 break;
             case 18:
                 fileDocx.addTextBolt("18.");
@@ -825,6 +825,43 @@ public class WordWriter {
         fileDocx.addTextBreak("   б) " + v.get(1));
         fileDocx.addTextBreak("   в) " + v.get(2));
         fileDocx.addText("   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask17(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Основная гипотеза имеет вид H₀:";
+        String questionStrEnd = "Тогда конкурирующей может являться гипотеза:";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + " ρ = 0,7 " + questionStrEnd);
+            answer = "H₁: ρ > 0,7";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + " ρ = 2 " + questionStrEnd);
+            answer = "H₁: ρ ≤ 1";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + " ρ = 1 " + questionStrEnd);
+            answer = "H₁: ρ ≠ 1";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + " ρ = 0,9 " + questionStrEnd);
+            answer = "H₁: ρ ≠ 0,9";
+        }
+
+        String[] s = {"H₁: ρ > 0,7", "H₁: ρ ≤ 1", "H₁: ρ ≠ 1", "H₁: ρ ≠ 0,9"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){
