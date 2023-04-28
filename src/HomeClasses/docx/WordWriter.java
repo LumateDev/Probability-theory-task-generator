@@ -13,7 +13,7 @@ public class WordWriter {
     private final String filesPath;
     int fontSize;
     String fontFamily;
-    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ"};
+    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ",  "x̅ᵧ"};
     private final String [] specialSymbolsX = {"x₁", "x₂" ,"x₃", "x₄"};
     public WordWriter(int[] taskArray, int countVariants, String filesPath, int fontSize, String fontFamily){
         this.taskArray = taskArray;
@@ -45,7 +45,7 @@ public class WordWriter {
     }
 
     void createVariants(){
-        fileAnswers = new FileDocx(filesPath + "\\ответы", fontFamily, 14);
+        fileAnswers = new FileDocx(filesPath + "\\ответы", fontFamily, 16);
         int k = 0;
         int col = 1;
         int row = 1;
@@ -177,12 +177,12 @@ public class WordWriter {
             case 18:
                 fileDocx.addTextBolt("18.");
                 fileDocx.addTab();
-                //fileAnswers.addTaleItem(createTask18(var), row, col);
+                fileAnswers.addTaleItem(createTask18(var), row, col);
                 break;
             case 19:
                 fileDocx.addTextBolt("19.");
                 fileDocx.addTab();
-                //fileAnswers.addTaleItem(createTask19(var), row, col);
+                fileAnswers.addTaleItem(createTask19(var), row, col);
                 break;
             case 20:
                 fileDocx.addTextBolt("20.");
@@ -872,4 +872,77 @@ public class WordWriter {
         return "Error";
     }
 
+    String createTask18(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Выборочное уравнение прямой линии регрессии X на Y имеет вид ";
+        String questionStrEnd = ". Тогда выборочное среднее признака";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[7] + " - 35,2 = -3,5(y - 25,9)" + questionStrEnd + " y равно:");
+            answer = "25,9";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[7] + " - 35,2 = -3,5(y + 25,9)" + questionStrEnd + " x равно:");
+            answer = "35,2";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[7] + " + 35,2 = -3,5(y + 25,9)" + questionStrEnd + " x равно:");
+            answer = "-35,2";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[7] + " -35,2 = -3,5(y + 25,9)" + questionStrEnd + " y равно:");
+            answer = "-25,9";
+        }
+
+        String[] s = {"25,9", "35,2", "-35,2", "-25,9"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask19(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "";
+        String questionStrBegin = "Выборочное уравнение прямой линии регрессии X на Y имеет вид: ";
+        String questionStrEnd = ". Тогда выборочный коэффициент корреляции может быть равен:";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + "x = -5,72 + 3,36y" + questionStrEnd);
+            answer = "0,81";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + "x = 5,72 - 3,36y" + questionStrEnd);
+            answer = "-0,5";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + "y = -5,72 + 3,36x" + questionStrEnd);
+            answer = "0,81";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + "y = 5,72 - 3,36x" + questionStrEnd);
+            answer = "-0,5";
+        }
+
+        String[] s = {"-0,5", "-2", "0,81", "2,36"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
 }
