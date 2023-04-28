@@ -13,7 +13,7 @@ public class WordWriter {
     private final String filesPath;
     int fontSize;
     String fontFamily;
-    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ",  "x̅ᵧ"};
+    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ",  "x̅ᵧ", "ρyx", "y̅", "x̅", "y̅ₓ"};
     private final String [] specialSymbolsX = {"x₁", "x₂" ,"x₃", "x₄"};
     public WordWriter(int[] taskArray, int countVariants, String filesPath, int fontSize, String fontFamily){
         this.taskArray = taskArray;
@@ -187,7 +187,7 @@ public class WordWriter {
             case 20:
                 fileDocx.addTextBolt("20.");
                 fileDocx.addTab();
-                //fileAnswers.addTaleItem(createTask20(var), row, col);
+                fileAnswers.addTaleItem(createTask20(var), row, col);
                 break;
             case 21:
                 fileDocx.addTextBolt("21.");
@@ -940,6 +940,46 @@ public class WordWriter {
         int k = 0;
         for(String i : v){
             if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+
+    String createTask20(int var){
+        while (var > 4)
+            var -= 4;
+        String answer = "0";
+        String questionStrBegin = "При построении выборочного уравнения прямой линии регрессии Y на X вычислены выборочный коэффициент регрессии ";
+        String questionStrEnd = ". Тогда уравнение регрессии примет вид:";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = -3,4 и выборочные средние " + specialSymbols[10] +
+                    " = 7,54 и " + specialSymbols[9] + " = 2,67 " + questionStrEnd);
+            answer = specialSymbols[11] + " = -3,4x + 28,306";
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = 3,4 и выборочные средние " + specialSymbols[10] +
+                    " = -7,54 и " + specialSymbols[9] + " = 2,67 " + questionStrEnd);
+            answer = specialSymbols[11] + " = 3,4x + 28,306";
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = -3,4 и выборочные средние " + specialSymbols[10] +
+                    " = 1,7 и " + specialSymbols[9] + " = 1,76 " + questionStrEnd);
+            answer = specialSymbols[11] + " = -3,4x + 7,54";
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = -3,4 и выборочные средние " + specialSymbols[10] +
+                    " = 0,5 и " + specialSymbols[9] + " = 7,54 " + questionStrEnd);
+            answer = specialSymbols[11] + " -7,54 = -3,4x + 1,7";
+        }
+        String[] s = {specialSymbols[11] + " = -3,4x + 28,306", specialSymbols[11] + " = 3,4x + 28,306", specialSymbols[11] + " = -3,4x + 7,54", specialSymbols[11] + " -7,54 = -3,4x + 1,7"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(answer))
                 return b[k];
             k ++;
         }
