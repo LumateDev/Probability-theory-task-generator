@@ -192,7 +192,7 @@ public class WordWriter {
             case 21:
                 fileDocx.addTextBolt("21.");
                 fileDocx.addTab();
-                //fileAnswers.addTaleItem(createTask21(var), row, col);
+                fileAnswers.addTaleItem(createTask21(var), row, col);
                 break;
         }
     }
@@ -940,6 +940,42 @@ public class WordWriter {
         int k = 0;
         for(String i : v){
             if(i.equals((answer)))
+                return b[k];
+            k ++;
+        }
+        return "Error";
+    }
+    String createTask21 (int var){
+        while (var > 4)
+            var -= 4;
+        double answer = 0.0;
+        String questionStrBegin = "При построении выборочного уравнения парной регрессии вычислены выборочный коэффициент корреляции";
+        String questionStrEnd = "и выборочные средние квадратические отклонения \uF073X = 2,5, \uF073Y = 1,25. Тогда выборочный коэффициент регрессии Y на X равен:";
+        if(var == 1){
+            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = 0,64  " + questionStrEnd);
+            answer = 0.32;
+        }
+        else if(var == 2){
+            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = -0,64  " + questionStrEnd);
+            answer = -0.32;
+        }
+        else if(var == 3){
+            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = 0,54  " + questionStrEnd);
+            answer = 0.27;
+        }
+        else if(var == 4){
+            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = -0,54  " + questionStrEnd);
+            answer = -0.27;
+        }
+
+        String[] s = {"0.32", "-0.32", "0.27", "-0.27"};
+        List<String> v = new ArrayList<>(Arrays.asList(s));
+        Collections.shuffle(v);
+        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        String [] b = new String[] {"а", "б", "в","г"};
+        int k = 0;
+        for(String i : v){
+            if(i.equals(Double.toString(answer)))
                 return b[k];
             k ++;
         }
