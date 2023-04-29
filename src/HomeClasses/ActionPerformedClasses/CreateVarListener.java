@@ -16,17 +16,6 @@ public class CreateVarListener implements ActionListener {
     private final String defaultFilePath = "C:\\Users\\" + System.getProperty("user.name") + "\\Desktop\\Варианты";
     private final Set<Task> taskSet;
     private static String userFilePath;
-
-    static {
-        try {
-            userFilePath = pathWRC.readFromTxt();
-            if(userFilePath.isEmpty()){
-                userFilePath = null;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     private final JPanel mainPanel;
     private final JTextField textFieldCountVar;
     FontSizeListener fontSizeListener;
@@ -44,6 +33,21 @@ public class CreateVarListener implements ActionListener {
         this.textFieldCountVar = textFieldCountVar;
         this.fontSizeListener = fontSizeListener;
         this.fontFamilyListener = fontFamilyListener;
+    }
+
+    static {
+        try {
+            userFilePath = pathWRC.readFromTxt();
+            if(userFilePath.isEmpty()){
+                userFilePath = null;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getUserFilePath() {
+        return userFilePath;
     }
 
     public void setUserFilePath(String userFilePath) {

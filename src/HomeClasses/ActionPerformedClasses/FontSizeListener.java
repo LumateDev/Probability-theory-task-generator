@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class FontSizeListener implements ActionListener {
     FontSizeWRC fontSizeWRC = new FontSizeWRC();
-    //String fontSize = "14";
     String fontSize;
 
     {

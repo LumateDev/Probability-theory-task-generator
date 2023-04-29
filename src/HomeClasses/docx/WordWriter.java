@@ -401,7 +401,7 @@ public class WordWriter {
         }
         else if(var == 4){
             fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = 252, гистограмма относительных частот которой имеет вид:");
-            //fileDocx.addPicture("src\\res\\image\\график задание 6A.png", 385, 268);
+            fileDocx.addPicture("src\\res\\image\\график задание 6Г.png", 385, 268);
         }
         String[] rowHeader = new String[]{ specialSymbols[2], "0-4", "4-8", "8-12", "12-16" };
         String[] rowTable;

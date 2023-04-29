@@ -24,7 +24,6 @@ public class ThemesDesign{
     private final JLabel labelChoosePath;
     private final JPanel mainPanel;
     private final JPanel buttonPanel;
-
     private final JLabel labelChoseFontFamily;
     private final JLabel labelChoseFontSize;
 
@@ -100,11 +99,11 @@ public class ThemesDesign{
 
     public void initPropertiesLight(){
         page1Panel.setBackground(new Color(245, 245, 245));
-        tabPane1.setBackground(new Color(96, 96, 96));
+        tabPane1.setBackground(new Color(150, 150, 150));
         topPanel.setBackground(new Color(235, 235, 235));
         buttonPanel.setBackground(new Color(245, 245, 245));
         lowPanel.setBackground(new Color(235, 235, 235));
-        mainPanel.setBackground(new Color(133, 133, 133));
+        mainPanel.setBackground(new Color(190, 190, 190));
         pageSettings.setBackground(new Color(230, 230, 230));
         settingsTopPanel.setBackground(new Color(245, 245, 245));
         settingsTreePanel.setBackground(new Color(230, 230, 230));
