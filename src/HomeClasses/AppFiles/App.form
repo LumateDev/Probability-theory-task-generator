@@ -449,28 +449,13 @@
                       <text value="Размер шрифта:"/>
                     </properties>
                   </component>
-                  <component id="3362c" class="javax.swing.JComboBox" binding="comboBoxFontFamily">
-                    <constraints>
-                      <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <model>
-                        <item value="Times New Roman"/>
-                        <item value="Calibri"/>
-                        <item value="Arial"/>
-                        <item value="Verdana"/>
-                        <item value="Comic Sans MS"/>
-                        <item value="Georgia"/>
-                        <item value="Impact"/>
-                      </model>
-                    </properties>
-                  </component>
                   <component id="63644" class="javax.swing.JComboBox" binding="comboBoxFontSize">
                     <constraints>
                       <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <model>
+                        <item value="&lt;default&gt;"/>
                         <item value="11"/>
                         <item value="12"/>
                         <item value="13"/>
@@ -479,6 +464,23 @@
                         <item value="16"/>
                         <item value="17"/>
                         <item value="18"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="3362c" class="javax.swing.JComboBox" binding="comboBoxFontFamily">
+                    <constraints>
+                      <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model>
+                        <item value="&lt;default&gt;"/>
+                        <item value="Times New Roman"/>
+                        <item value="Calibri"/>
+                        <item value="Arial"/>
+                        <item value="Verdana"/>
+                        <item value="Comic Sans MS"/>
+                        <item value="Georgia"/>
+                        <item value="Impact"/>
                       </model>
                     </properties>
                   </component>

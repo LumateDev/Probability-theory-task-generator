@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 public class FontFamilyWRC implements TxtManager{
     @Override
@@ -22,16 +23,16 @@ public class FontFamilyWRC implements TxtManager{
     @Override
     public String readFromTxt() throws IOException {
         String savedFontFamily;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src\\res\\configuration\\FontFamilyConfig.txt"))) {
+        try (FileReader fileReader = new FileReader("src\\res\\configuration\\FontFamilyConfig.txt")) {
             StringBuilder builder = new StringBuilder();
-            String line = reader.readLine();
-
-            while (line != null) {
-                builder.append(line);
-                builder.append(System.lineSeparator());
-                line = reader.readLine();
+            int nextChar;
+            while ((nextChar = fileReader.read()) != -1) {
+                builder.append((char) nextChar);
             }
-            savedFontFamily = builder.toString();
+            savedFontFamily = String.valueOf(builder);
+            if(Objects.equals(savedFontFamily, "<default>")){
+                savedFontFamily = "Tames New Roman";
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

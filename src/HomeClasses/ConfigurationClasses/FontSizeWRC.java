@@ -4,6 +4,7 @@ package HomeClasses.ConfigurationClasses;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 public class FontSizeWRC implements TxtManager{
     @Override
@@ -29,6 +30,9 @@ public class FontSizeWRC implements TxtManager{
                 builder.append((char) nextChar);
             }
             savedFontSize = String.valueOf(builder);
+            if(Objects.equals(savedFontSize, "<default>")){
+                savedFontSize = "14";
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

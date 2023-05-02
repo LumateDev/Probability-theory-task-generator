@@ -1,6 +1,7 @@
 package HomeClasses.ActionPerformedClasses;
 
 import HomeClasses.ConfigurationClasses.PathWRC;
+import HomeClasses.MyException.MyExceptionNotPositive;
 import HomeClasses.TaskManager.Task;
 import HomeClasses.docx.WordWriter;
 import javax.swing.*;
@@ -59,6 +60,7 @@ public class CreateVarListener implements ActionListener {
 
         try{
             int countVar = Integer.parseInt(textFieldCountVar.getText());
+            if(countVar <= 0){throw new MyExceptionNotPositive();}
             String answer;
             answer = "Создание успешно завершено! Ваши " + countVar + " вариантов находятся в папке " +
                     Objects.requireNonNullElse(userFilePath, "'Варианты' на рабочем столе ") +
@@ -116,10 +118,35 @@ public class CreateVarListener implements ActionListener {
             }
         }
         catch (Exception ex){
-            System.out.println(ex.getMessage());
-            String answer = "Количество вариантов должно быть целым числом!";
-            JOptionPane.showMessageDialog(mainPanel,answer);
-            textFieldCountVar.setText("");
+            if(ex instanceof MyExceptionNotPositive){
+                System.out.println(ex.getMessage());
+                String answer = "Введите корректное количество вариантов!\n" +
+                        "Количество вариантов должно быть положительным числом!";
+                JOptionPane.showMessageDialog(mainPanel,answer);
+                textFieldCountVar.setText("");
+            }
+            else if(ex instanceof  NumberFormatException){
+                System.out.println(ex.getMessage());
+                String answer = "Введите корректное количество вариантов!\n" +
+                        "Вы серьёзно? Колличество должно быть задано целым числом!";
+                JOptionPane.showMessageDialog(mainPanel,answer);
+                textFieldCountVar.setText("");
+            }
+            else if(ex instanceof NullPointerException){
+                System.out.println(ex.getMessage());
+                String answer = "Упс! Что-то пошло не так..\n" +
+                        "Попробуйте заного выбрать нужные вам настройки." +
+                        "Так же, если вы указывали путь, попробуйте его изменить.";
+                JOptionPane.showMessageDialog(mainPanel,answer);
+                textFieldCountVar.setText("");
+            }
+            else {
+                System.out.println(ex.getMessage());
+                String answer = "Если это сообщение вылезло, всё плохо...\n" +
+                        " зовите команду разработчиков!";
+                JOptionPane.showMessageDialog(mainPanel, answer);
+                textFieldCountVar.setText("");
+            }
         }
     }
 }
