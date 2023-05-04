@@ -30,10 +30,12 @@ public class FileDocx {
     void addHeader(String str){
         addTextBoltCenter(str);
         newParagraph();
+        paragraph.setAlignment(ParagraphAlignment.CENTER);
         run.setFontSize(fontSize);
         run.setText("Фамилия______________________Группа________");
         run.addBreak();
         run.setFontFamily(font);
+        newParagraph();
     }
     void addTab(){
         run = paragraph.createRun();
@@ -105,13 +107,13 @@ public class FileDocx {
     void initRow(int numRow){
         addTaleItem("№", 0, 0);
         for(int i = 1; i <= numRow; i++){
-            addTaleItem("Вар-"+i, 0, i);
+            addTaleItem("Вар."+i, 0, i);
         }
     }
     void initRow(int a, int b){
         addTaleItem("№", 0, 0);
         for(int i = 0; i < b; i++){
-            addTaleItem("Вар-" + a, 0, i+1);
+            addTaleItem("Вар." + a, 0, i+1);
             a++;
         }
     }

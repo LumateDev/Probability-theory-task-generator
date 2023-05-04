@@ -1,6 +1,7 @@
 package HomeClasses.docx;
 
 import HomeClasses.ActionPerformedClasses.CreateVarListener;
+import org.apache.poi.sl.usermodel.Sheet;
 
 import java.io.File;
 import java.util.*;
@@ -13,7 +14,7 @@ public class WordWriter {
     private final String filesPath;
     int fontSize;
     String fontFamily;
-    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ",  "x̅ᵧ", "ρyx", "y̅", "x̅", "y̅ₓ"};
+    private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ",  "x̅ᵧ", "ρyx", "y̅", "x̅", "y̅ₓ", "σₓ", "σᵧ"};
     private final String [] specialSymbolsX = {"x₁", "x₂" ,"x₃", "x₄"};
     public WordWriter(int[] taskArray, int countVariants, String filesPath, int fontSize, String fontFamily){
         this.taskArray = taskArray;
@@ -51,14 +52,15 @@ public class WordWriter {
         int row = 1;
         for(int variant = 1; variant <= countVariants; variant++){
             //code create File variant
-            if(k  == 8 || k == 0){
-                if(countVariants - variant >= 8){
+            if(k  == 7 || k == 0){
+                if(countVariants - variant >= 7){
                     fileAnswers.newParagraph();
-                    fileAnswers.initTable(taskArray.length+1, 9);
-                    fileAnswers.initRow(variant, 8);
+                    fileAnswers.initTable(taskArray.length+1, 8);
+                    fileAnswers.initRow(variant, 7);
                     fileAnswers.initCol(taskArray);
                     col = 1;
                     row = 1;
+
                 }
                 else{
                     fileAnswers.newParagraph();
@@ -975,7 +977,8 @@ public class WordWriter {
         String[] s = {specialSymbols[11] + " = -3,4x + 28,306", specialSymbols[11] + " = 3,4x + 28,306", specialSymbols[11] + " = -3,4x + 7,54", specialSymbols[11] + " -7,54 = -3,4x + 1,7"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
-        fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
+        fileDocx.addTextBreak("   а) " + v.get(0) + "   б) " + v.get(1));
+        fileDocx.addText("   в) " + v.get(2) + "   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){
@@ -990,21 +993,21 @@ public class WordWriter {
             var -= 4;
         double answer = 0.0;
         String questionStrBegin = "При построении выборочного уравнения парной регрессии вычислены выборочный коэффициент корреляции";
-        String questionStrEnd = "и выборочные средние квадратические отклонения \uF073X = 2,5, \uF073Y = 1,25. Тогда выборочный коэффициент регрессии Y на X равен:";
+        String questionStrEnd = "и выборочные средние квадратические отклонения " + specialSymbols[12] + " = 2,5, "+ specialSymbols[12] + " = 1,25. Тогда выборочный коэффициент регрессии Y на X равен:";
         if(var == 1){
-            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = 0,64  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = 0,64  " + questionStrEnd);
             answer = 0.32;
         }
         else if(var == 2){
-            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = -0,64  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = -0,64  " + questionStrEnd);
             answer = -0.32;
         }
         else if(var == 3){
-            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = 0,54  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = 0,54  " + questionStrEnd);
             answer = 0.27;
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStrBegin + " r" + specialSymbols[6] +" = -0,54  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = -0,54  " + questionStrEnd);
             answer = -0.27;
         }
 
