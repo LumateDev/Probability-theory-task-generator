@@ -27,6 +27,11 @@ public class FileDocx {
         paragraph = docx.createParagraph();
         run = paragraph.createRun();
     }
+    void newPages(){
+        paragraph = docx.createParagraph();
+        paragraph.setPageBreak(true);
+        run = paragraph.createRun();
+    }
     void addHeader(String str){
         addTextBoltCenter(str);
         newParagraph();
@@ -113,7 +118,7 @@ public class FileDocx {
     void initRow(int a, int b){
         addTaleItem("№", 0, 0);
         for(int i = 0; i < b; i++){
-            addTaleItem("Вар." + a, 0, i+1);
+            addTaleItem("В-" + a, 0, i+1);
             a++;
         }
     }

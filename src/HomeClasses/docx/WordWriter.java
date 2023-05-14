@@ -16,7 +16,7 @@ public class WordWriter {
     String fontFamily;
     private final String[] specialSymbols = {"xᵢ", "xᵢ₊₁", "xᵢ - xᵢ₊₁", "nᵢ", "n₃", "X̅", "ʙ",  "x̅ᵧ", "ρyx", "y̅", "x̅", "y̅ₓ", "σₓ", "σᵧ"};
     private final String [] specialSymbolsX = {"x₁", "x₂" ,"x₃", "x₄"};
-    public WordWriter(int[] taskArray, int countVariants, String filesPath, int fontSize, String fontFamily){
+    public WordWriter(int[] taskArray, int countVariants, String filesPath, int fontSize, String fontFamily, boolean flag){
         this.taskArray = taskArray;
         this.countVariants = countVariants;
         this.filesPath = filesPath;
@@ -28,7 +28,12 @@ public class WordWriter {
             theDir.mkdirs();
         }
         System.out.println(filesPath);
-        createVariants();
+        if(flag){
+            createVariantsInOneFile();
+        }
+        else{
+            createVariants();
+        }
     }
     String arrayToString(int[] array){
         StringBuilder str = new StringBuilder();
@@ -45,8 +50,58 @@ public class WordWriter {
         return min + Math.random() * (max - min);
     }
 
+    void createVariantsInOneFile(){
+        fileAnswers = new FileDocx(filesPath + "\\ответы", "Calibri", 16);
+        fileDocx = new FileDocx(filesPath + "\\Варианты", fontFamily, fontSize);
+        fileAnswers.newParagraph();
+        fileAnswers.addTextBoltCenter("Ответы");
+        fileAnswers.addTextBoltCenter("Тест 2");
+        int k = 0;
+        int col = 1;
+        int row = 1;
+        for(int variant = 1; variant <= countVariants; variant++){
+            //code create File variant
+            if(k  == 7 || k == 0){
+                if(countVariants - variant >= 7){
+                    fileAnswers.newParagraph();
+                    fileAnswers.initTable(taskArray.length+1, 8);
+                    fileAnswers.initRow(variant, 7);
+                    fileAnswers.initCol(taskArray);
+                    col = 1;
+                    row = 1;
+                    fileAnswers.newPages();
+                }
+                else{
+                    fileAnswers.newParagraph();
+                    fileAnswers.initTable(taskArray.length+1, (countVariants - variant) + 2);
+                    fileAnswers.initRow(variant, countVariants - variant + 1);
+                    fileAnswers.initCol(taskArray);
+                    col = 1;
+                    row = 1;
+                }
+                k = 0;
+            }
+            k++;
+            fileDocx.newParagraph();
+            fileDocx.addHeader("Тест 2. Вариант " + variant);
+            for(int task = 0; task < taskArray.length; task++){
+                fileDocx.newParagraph();
+                createTask(taskArray[task], variant, row, col);
+                row++;
+            }
+            col++;
+            row = 1;
+            fileDocx.newPages();
+        }
+        fileDocx.printToFile();
+        fileAnswers.printToFile();
+    }
     void createVariants(){
-        fileAnswers = new FileDocx(filesPath + "\\ответы", fontFamily, 16);
+        fileAnswers = new FileDocx(filesPath + "\\ответы", "Calibri", 16);
+        fileAnswers.newParagraph();
+        fileAnswers.newPages();
+        fileAnswers.addTextBoltCenter("Ответы");
+        fileAnswers.addTextBoltCenter("Тест 2");
         int k = 0;
         int col = 1;
         int row = 1;
@@ -307,24 +362,24 @@ public class WordWriter {
     String createTask4(int var){
         while (var > 4)
             var -= 4;
-        double answer = 0.0;
+        String answer = "";
         String[] rowTable = new String[]{ specialSymbols[0], "3", "4", "5", "6", "7" };
         String questionStr = "Из генеральной совокупности извлечена выборка объёма n = ";
         if(var == 1){
             fileDocx.addTextBreak(questionStr + 100);
-            answer = 0.18;
+            answer = "0,18";
         }
         else if(var == 2){
             fileDocx.addTextBreak(questionStr + 132);
-            answer = 0.5;
+            answer = "0,37";
         }
         else if(var == 3){
             fileDocx.addTextBreak(questionStr + 107);
-            answer = 0.25;
+            answer = "0,23";
         }
         else if(var == 4){
             fileDocx.addTextBreak(questionStr + 95);
-            answer = 0.13;
+            answer = "0,13";
         }
         //запись таблицы
         fileDocx.initTable(2, 6);
@@ -335,14 +390,14 @@ public class WordWriter {
         fileDocx.newParagraph();
         fileDocx.addTextBreak("Тогда относительная частота варианты " + specialSymbols[0] + " = 5 равна:");
 
-        String[] s = {"0.5", "0.25", "0.18", "0.13"};
+        String[] s = {"0,18", "0,37", "0,23", "0,13"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){
-            if(i.equals(Double.toString(answer)))
+            if(i.equals(answer))
                 return b[k];
             k ++;
         }
@@ -402,7 +457,7 @@ public class WordWriter {
             fileDocx.addPicture("src\\res\\image\\график задание 6В.png", 385, 268);
         }
         else if(var == 4){
-            fileDocx.addTextBreak("Из генеральной совокупности извлечена выборка объёма n = 252, гистограмма относительных частот которой имеет вид:");
+            fileDocx.addTextBreak(questionStr);
             fileDocx.addPicture("src\\res\\image\\график задание 6Г.png", 385, 268);
         }
         String[] rowHeader = new String[]{ specialSymbols[2], "0-4", "4-8", "8-12", "12-16" };
@@ -437,7 +492,7 @@ public class WordWriter {
             if(v.get(i).equals(Integer.toString(4))){
                 fileDocx.initTable(2, 5);
                 fileDocx.addTableArrayRow(rowHeader,0);
-                rowTable = new String[]{specialSymbols[3], "48", "64", "20", "120"};
+                rowTable = new String[]{specialSymbols[3], "50", "60", "20", "120"};
                 fileDocx.addTableArrayRow(rowTable,1);
             }
         }
@@ -446,42 +501,53 @@ public class WordWriter {
     String createTask7(int var){
         while (var > 4)
             var -= 4;
-        double answer = 0.0;
-        String[] rowTable = new String[]{ specialSymbols[0], "12", "14", "15", "19"};
+        String answer = "";
+        String[] rowTable = new String[]{ specialSymbols[0], "1", "2", "3", "4"};
         String questionStr = "Из генеральной совокупности извлечена выборка объёма n = ";
         if(var == 1){
             fileDocx.addTextBreak(questionStr + 40 + ":");
-            answer = 13.1;
+            fileDocx.initTable(2, 5);
+            fileDocx.addTableArrayRow(rowTable,0);
+            rowTable = new String[]{specialSymbols[3], "5", "10", "15", "10"};
+            fileDocx.addTableArrayRow(rowTable, 1);
+            answer = "2,75";
         }
         else if(var == 2){
-            fileDocx.addTextBreak(questionStr + 27.5 + ":");
-            answer = 19.0;
+            fileDocx.addTextBreak(questionStr + 50 + ":");
+            fileDocx.initTable(2, 5);
+            fileDocx.addTableArrayRow(rowTable,0);
+            rowTable = new String[]{specialSymbols[3], "15", "10", "15", "10"};
+            fileDocx.addTableArrayRow(rowTable, 1);
+            answer = "2,4";
         }
         else if(var == 3){
-            fileDocx.addTextBreak(questionStr + 655 + ":");
-            answer = 0.8;
+            fileDocx.addTextBreak(questionStr + 60 + ":");
+            fileDocx.initTable(2, 5);
+            fileDocx.addTableArrayRow(rowTable,0);
+            rowTable = new String[]{specialSymbols[3], "15", "20", "15", "10"};
+            fileDocx.addTableArrayRow(rowTable, 1);
+            answer = "2,33";
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStr + 349 + ":");
-            answer = 1.5;
+            fileDocx.addTextBreak(questionStr + 70 + ":");
+            fileDocx.initTable(2, 5);
+            fileDocx.addTableArrayRow(rowTable,0);
+            rowTable = new String[]{specialSymbols[3], "15", "20", "15", "20"};
+            fileDocx.addTableArrayRow(rowTable, 1);
+            answer = "2,57";
         }
-        //запись таблицы
-        fileDocx.initTable(2, 5);
-        fileDocx.addTableArrayRow(rowTable, 0);
-        rowTable = new String[]{specialSymbols[3], "22", "14", "3", "1"};
-        fileDocx.addTableArrayRow(rowTable, 1);
 
         fileDocx.newParagraph();
         fileDocx.addTextBreak("Тогда несмещенная оценка математического ожидания равна: ");
 
-        String[] s = {"0.8", "1.5", "13.1", "19.0"};
+        String[] s = {"2,75", "2,4", "2,33", "2,57"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
         String [] b = new String[] {"а", "б", "в","г"};
         int k = 0;
         for(String i : v){
-            if(i.equals(Double.toString(answer)))
+            if(i.equals(answer))
                 return b[k];
             k ++;
         }

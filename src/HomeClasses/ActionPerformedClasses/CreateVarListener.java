@@ -113,7 +113,8 @@ public class CreateVarListener implements ActionListener {
                         countVar,
                         Objects.requireNonNullElse(userFilePath, defaultFilePath),
                         Integer.parseInt(fontSizeListener.getFontSize()),
-                        fontFamilyListener.getFontFamily()
+                        fontFamilyListener.getFontFamily(),
+                        true
                 );
             }
         }
