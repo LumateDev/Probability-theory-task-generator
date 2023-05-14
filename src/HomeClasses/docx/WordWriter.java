@@ -715,29 +715,26 @@ public class WordWriter {
         String answer = "";
         String questionStrBegin = "Дан доверительный интервал ";
         String questionStrEnd = " для оценки математического ожидания нормально распределенного количественного признака" +
-                " при известном среднем квадратическом отклонении генеральной совокупности. Тогда при увеличении объема выборки ";
+                " при известном среднем квадратическом отклонении генеральной совокупности. Тогда при увеличении объема выборки "
+                + "в четыре раза этот доверительный интервал примет вид:";
         if(var == 1){
-            fileDocx.addTextBreak(questionStrBegin + "(20,4; 25,6)" + questionStrEnd + "в четыре раза этот" +
-                    " доверительный интервал примет вид:");
+            fileDocx.addTextBreak(questionStrBegin + "(20,4; 25,6)" + questionStrEnd);
             answer = "(21,7; 24,3)";
         }
         else if(var == 2){
-            fileDocx.addTextBreak(questionStrBegin + "(10,3; 12,7)" + questionStrEnd + "в девять раз этот" +
-                    " доверительный интервал примет вид:");
-            answer = "(10.7; 12.3)";
+            fileDocx.addTextBreak(questionStrBegin + "(10,3; 13,7)" + questionStrEnd);
+            answer = "(11,15; 12,85)";
         }
         else if(var == 3){
-            fileDocx.addTextBreak(questionStrBegin + "(14,1; 20,5)" + questionStrEnd + "в четыре раза этот" +
-                    " доверительный интервал примет вид:");
+            fileDocx.addTextBreak(questionStrBegin + "(14,1; 20,5)" + questionStrEnd);
             answer = "(15,7; 18,9)";
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStrBegin + "(16,4; 24,2)" + questionStrEnd + "в девять раз этот" +
-                    " доверительный интервал примет вид:");
-            answer = "(17,7; 22,9)";
+            fileDocx.addTextBreak(questionStrBegin + "(16,4; 24,2)" + questionStrEnd);
+            answer = "(18,35; 22,25)";
         }
 
-        String[] s = {"(21,7; 24,3)", "(10.7; 12.3)", "(15,7; 18,9)", "(17,7; 22,9)"};
+        String[] s = {"(21,7; 24,3)", "(11,15; 12,85)", "(15,7; 18,9)", "(18,35; 22,25)" };
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
@@ -801,18 +798,18 @@ public class WordWriter {
         }
         else if(var == 2){
             fileDocx.addTextBreak(questionStrBegin + "9,6. " + questionStrEnd + " 1,4 имеет вид:" );
-            answer = "(4,1; 5,5)";
+            answer = "(8,2; 11)";
         }
         else if(var == 3){
             fileDocx.addTextBreak(questionStrBegin + "14. " + questionStrEnd + " 2 имеет вид:");
-            answer = "(6; 8)";
+            answer = "(12; 16)";
         }
         else if(var == 4){
             fileDocx.addTextBreak(questionStrBegin + "5,2. " + questionStrEnd + " 1,1 имеет вид:");
-            answer = "(2,05; 3,15)";
+            answer = "(4,1; 6,3)";
         }
 
-        String[] s = {"(9,1; 11)", "(4,1; 5,5)", "(6; 8)", "(2,05; 3,15)"};
+        String[] s = {"(9,1; 11)", "(8,2; 11)", "(12; 16)", "(4,1; 6,3)"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
