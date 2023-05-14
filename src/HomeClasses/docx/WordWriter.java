@@ -827,24 +827,24 @@ public class WordWriter {
             var -= 4;
         String answer = "";
         String questionStrBegin = "может определяться из соотношения:";
-        if(var == 1){
+        if(var == 2){
             fileDocx.addTextBreak("Левосторонняя критическая область " + questionStrBegin);
             answer = "P(K < – 2,4) = 0,06";
         }
-        else if(var == 2){
+        else if(var == 1){
             fileDocx.addTextBreak("Правосторонняя критическая область " + questionStrBegin);
             answer = "P(K >2,4) = 0,06";
         }
-        else if(var == 3){
+        else if(var == 4){
             fileDocx.addTextBreak("Двусторонняя критическая область " + questionStrBegin);
             answer = "P(K < – 2,4) + P(K >2,4)=0,12";
         }
-        else if(var == 4){
+        else if(var == 3){
             fileDocx.addTextBreak("Область принятия гипотезы " + questionStrBegin);
-            answer = "P(K > – 2,4) = 0,06";
+            answer = "P(– 2,4 < K < 2,4) = 0,06";
         }
 
-        String[] s = {"P(K < – 2,4) = 0,06", "P(K >2,4) = 0,06", "P(K < – 2,4) + P(K >2,4)=0,12", "P(K > – 2,4) = 0,06"};
+        String[] s = {"P(K < – 2,4) = 0,06", "P(K >2,4) = 0,06", "P(K < – 2,4) + P(K >2,4)=0,12", "P(– 2,4 < K < 2,4) = 0,06"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addTextBreak("   а) " + v.get(0) + "   б) " + v.get(1));
@@ -878,7 +878,7 @@ public class WordWriter {
             answer = "двустороннюю критическую область";
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStrBegin + "P(K > − 1,09) = 0,03" + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + "P(− 1,09 < K <  1,09) = 0,03" + questionStrEnd);
             answer = "область принятия гипотезы";
         }
 
@@ -903,6 +903,7 @@ public class WordWriter {
     String createTask17(int var){
         while (var > 4)
             var -= 4;
+        String[] s = {"H₁: ρ > 0,7", "H₁: ρ ≤ 1", "H₁: ρ ≠ 1", "H₁: ρ ≠ 0,9"};
         String answer = "";
         String questionStrBegin = "Основная гипотеза имеет вид H₀:";
         String questionStrEnd = "Тогда конкурирующей может являться гипотеза:";
@@ -911,8 +912,9 @@ public class WordWriter {
             answer = "H₁: ρ > 0,7";
         }
         else if(var == 2){
-            fileDocx.addTextBreak(questionStrBegin + " ρ = 2 " + questionStrEnd);
-            answer = "H₁: ρ ≤ 1";
+            s = new String[]{"H₁: ρ > 10", "H₁: ρ ≤ 10,8", "H₁: ρ ≥ 11", "H₁: ρ ≠ 10,8"};
+            fileDocx.addTextBreak(questionStrBegin + " ρ = 10,8 " + questionStrEnd);
+            answer = "H₁: ρ ≠ 10,8";
         }
         else if(var == 3){
             fileDocx.addTextBreak(questionStrBegin + " ρ = 1 " + questionStrEnd);
@@ -923,7 +925,6 @@ public class WordWriter {
             answer = "H₁: ρ ≠ 0,9";
         }
 
-        String[] s = {"H₁: ρ > 0,7", "H₁: ρ ≤ 1", "H₁: ρ ≠ 1", "H₁: ρ ≠ 0,9"};
         List<String> v = new ArrayList<>(Arrays.asList(s));
         Collections.shuffle(v);
         fileDocx.addText("   а) " + v.get(0) + "   б) " + v.get(1) + "   в) " + v.get(2) + "   г) " + v.get(3));
