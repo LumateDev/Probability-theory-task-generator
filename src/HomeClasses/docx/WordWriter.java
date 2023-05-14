@@ -54,8 +54,8 @@ public class WordWriter {
         fileAnswers = new FileDocx(filesPath + "\\ответы", "Calibri", 16);
         fileDocx = new FileDocx(filesPath + "\\Варианты", fontFamily, fontSize);
         fileAnswers.newParagraph();
+        fileDocx.newParagraph();
         fileAnswers.addTextBoltCenter("Ответы");
-        fileAnswers.addTextBoltCenter("Тест 2");
         int k = 0;
         int col = 1;
         int row = 1;
@@ -82,7 +82,6 @@ public class WordWriter {
                 k = 0;
             }
             k++;
-            fileDocx.newParagraph();
             fileDocx.addHeader("Тест 2. Вариант " + variant);
             for(int task = 0; task < taskArray.length; task++){
                 fileDocx.newParagraph();
@@ -91,7 +90,7 @@ public class WordWriter {
             }
             col++;
             row = 1;
-            fileDocx.newPages();
+            if(variant < countVariants) fileDocx.newPages();
         }
         fileDocx.printToFile();
         fileAnswers.printToFile();
@@ -1017,25 +1016,25 @@ public class WordWriter {
             var -= 4;
         String answer = "0";
         String questionStrBegin = "При построении выборочного уравнения прямой линии регрессии Y на X вычислены выборочный коэффициент регрессии ";
-        String questionStrEnd = ". Тогда уравнение регрессии примет вид:";
+        String questionStrEnd = " Тогда уравнение регрессии примет вид:";
         if(var == 1){
             fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = -3,4 и выборочные средние " + specialSymbols[10] +
-                    " = 7,54 и " + specialSymbols[9] + " = 2,67 " + questionStrEnd);
+                    " = 7,54 и " + specialSymbols[9] + " = 2,67." + questionStrEnd);
             answer = specialSymbols[11] + " = -3,4x + 28,306";
         }
         else if(var == 2){
             fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = 3,4 и выборочные средние " + specialSymbols[10] +
-                    " = -7,54 и " + specialSymbols[9] + " = 2,67 " + questionStrEnd);
+                    " = -7,54 и " + specialSymbols[9] + " = 2,67." + questionStrEnd);
             answer = specialSymbols[11] + " = 3,4x + 28,306";
         }
         else if(var == 3){
             fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = -3,4 и выборочные средние " + specialSymbols[10] +
-                    " = 1,7 и " + specialSymbols[9] + " = 1,76 " + questionStrEnd);
+                    " = 1,7 и " + specialSymbols[9] + " = 1,76." + questionStrEnd);
             answer = specialSymbols[11] + " = -3,4x + 7,54";
         }
         else if(var == 4){
             fileDocx.addTextBreak(questionStrBegin + specialSymbols[8] + " = -3,4 и выборочные средние " + specialSymbols[10] +
-                    " = 0,5 и " + specialSymbols[9] + " = 7,54 " + questionStrEnd);
+                    " = 0,5 и " + specialSymbols[9] + " = 7,54." + questionStrEnd);
             answer = specialSymbols[11] + " -7,54 = -3,4x + 1,7";
         }
         String[] s = {specialSymbols[11] + " = -3,4x + 28,306", specialSymbols[11] + " = 3,4x + 28,306", specialSymbols[11] + " = -3,4x + 7,54", specialSymbols[11] + " -7,54 = -3,4x + 1,7"};
@@ -1059,19 +1058,19 @@ public class WordWriter {
         String questionStrBegin = "При построении выборочного уравнения парной регрессии вычислены выборочный коэффициент корреляции";
         String questionStrEnd = "и выборочные средние квадратические отклонения " + specialSymbols[12] + " = 2,5, "+ specialSymbols[12] + " = 1,25. Тогда выборочный коэффициент регрессии Y на X равен:";
         if(var == 1){
-            fileDocx.addTextBreak(questionStrBegin + " rʙ = 0,64  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = 0,64 " + questionStrEnd);
             answer = 0.32;
         }
         else if(var == 2){
-            fileDocx.addTextBreak(questionStrBegin + " rʙ = -0,64  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = -0,64 " + questionStrEnd);
             answer = -0.32;
         }
         else if(var == 3){
-            fileDocx.addTextBreak(questionStrBegin + " rʙ = 0,54  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = 0,54 " + questionStrEnd);
             answer = 0.27;
         }
         else if(var == 4){
-            fileDocx.addTextBreak(questionStrBegin + " rʙ = -0,54  " + questionStrEnd);
+            fileDocx.addTextBreak(questionStrBegin + " rʙ = -0,54 " + questionStrEnd);
             answer = -0.27;
         }
 
